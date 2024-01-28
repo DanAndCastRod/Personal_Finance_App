@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <style>
+
+
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+        </header>
+        <main>
+            <ul class="list-group list-group-flush d-none" id ='listaDatos'>
+                <li class="list-group-item d-flex justify-content-between align-items-center ">
+                    <div class='col text-nowrap'>Active list item</div>
+                    <div class='col'><span></span></div>
+                    <div class='col'><span class="badge bg-secondary badge-pill">pill1</span></div>
+                    <div class='col'><a href="#">click</a></div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class='col text-nowrap'>List item</div>
+                    <div class='col'><span></span></div>
+                    <div class='col'><span class="badge bg-secondary badge-pill">pill2</span></div>
+                    <div class='col'><a href="#">click</a></div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center ">
+                    <div class='col text-nowrap'>Disabled item</div>
+                    <div class='col'><span></span></div>
+                    <div class='col'><span class="badge bg-secondary badge-pill">pill3</span></div>
+                    <div class='col'><a href="#">click</a></div>
+                </li>
+            </ul>
+            <!-- Some borders are removed -->
+
+            
+            
+            <!-- <ul id="listaDatos">
+                <li><b>Value 1</b>Dato 1</li>
+                <li>Dato 2</li>
+                <li>Dato 3</li> -->
+                <!-- Más datos si es necesario -->
+              <!-- </ul> -->
+              <div
+                class="container"
+              >
+              <button class= 'btn btn-outline-secondary'data-toggle="tooltip1" title="">Hover para ver la lista</button>
+
+              </div>
+              
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script>$(document).ready(function(){
+            $('[data-toggle="tooltip1"]').tooltip({
+              html: true,
+              title: function() {
+                return $('#listaDatos').html();
+              }
+            });
+          });
+          </script>
+    </body>
+</html>

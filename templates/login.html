@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="shortcut icon" href="../img/ejecoom_icon-removebg-preview.ico" type="image/x-icon">
+    <!-- JS de Bootstrap y dependencias (opcional, pero necesario para ciertos componentes como modales) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../style/loader.css"/>
+    <title>Coomercial</title>
+    <style>
+        .fixed-bottom-right {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            border-radius: 8px;
+            margin-bottom: 32px;
+            margin-right: 32px;
+            align-items: center;
+
+        }
+
+        .fixed-bottom-right a {
+            color: white;
+        }
+
+        .landing-img {
+            width: 100vw;
+        }
+
+        .container-img {
+            height: 94vh;
+            width: 100%;
+            background-image: url('/img/closeup-accountant-hands-counting-calculator.jpg');
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: #adadad;
+            /* Asegura que la imagen cubra todo el contenedor */
+            background-size: cover;
+
+
+            /* Centra la imagen horizontalmente */
+            background-position: center;
+
+        }
+
+        a {
+            text-decoration: none;
+
+
+        }
+
+        #landing-name {
+            display: flex;
+
+        }
+
+        #servicios {
+            height: 100vh;
+        }
+
+        #testimonios {
+            height: 100vh;
+        }
+
+        .form-cont {
+            height: 82vh;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-content: center;
+
+        }
+    </style>
+</head>
+<body>
+    <main>
+    <div class="container form-cont mt-5 ">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="card">
+                    <img class="w-75 align-self-center m-2" src="../img/ejecoom_logo.png" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Inicio de sesión</h5>
+                        <form id="loginForm">
+                        
+                            <div class="form-group">
+                                <label for="username">Nombre de usuario:</label>
+                                <input type="text" class="form-control" id="username"
+                                    placeholder="Ingrese su nombre de usuario">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Contraseña:</label>
+                                <input type="password" class="form-control" id="password"
+                                    placeholder="Ingrese su contraseña">
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                            <!-- <button type="submit" class="btn btn-primary btn-block" href="./app_desembolsos.html">Iniciar sesión</button> -->
+                            <!-- <a href="./app_desembolsos.html" class="btn btn-primary btn-block">Iniciar sesión</a> -->
+                            
+                        </form>
+                        <div class="alert alert-danger mt-3 d-none" id="errorAlert" >
+                            Contraseña incorrecta
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="container mt-5">
+        <h2>Registro de Ejecuciones de Presupuesto</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Descripción</th>
+              <th>Monto Presupuestado</th>
+              <th>Monto Ejecutado</th>
+              <th>Diferencia</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody> -->
+            <!-- Puedes agregar tus registros aquí, por ejemplo: -->
+            <!-- <tr>
+              <td>01/08/2023</td>
+              <td>Compra de materiales</td>
+              <td>$1000</td>
+              <td>$950</td>
+              <td>$50</td>
+              <td>
+                <a href="#" class="btn btn-primary btn-sm">Ver detalles</a>
+                <a href="#" class="btn btn-warning btn-sm">Editar</a>
+                <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+              </td>
+            </tr> -->
+            <!-- Repite el bloque <tr> para cada registro que quieras mostrar. -->
+          <!-- </tbody>
+        </table>
+      </div> -->
+      
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="../scripts/loader.js"></script> -->
+    <script>
+    document
+        .getElementById('loginForm')
+        .addEventListener('submit', function(event){
+            event.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            fetch('https://app.ejecomercial.co:1880/login',{
+                method: 'POST',
+                headers:{
+                    'Content-Type':'application/json',
+                },
+                body: JSON.stringify({username: username, password:password}),
+            })
+            .then((response)=>response.json())
+            .then((data)=>{
+                if(data.success){
+                    sessionStorage.setItem("auth", 1)
+                    // window.location.href = sessionStorage.redirect!=undefined||!sessionStorage.redirect.includes('form')||!sessionStorage.redirect.includes('contrat')?sessionStorage.redirect: './hub_admin.html';
+                    window.location.href = './hub_admin.html';
+                }else{
+                    document.getElementById('errorAlert').classList.remove('d-none')
+                }
+            })
+            .catch((error)=>{
+                console.error('Error:',error);
+            })
+        });
+    </script>
+        
+        <!-- <script src="../scripts/script.js"></script> -->
+        <!-- <script>window.addEventListener('DOMContentLoaded', hideLoadingScreen());</script> -->
+</body>
+
+</html>

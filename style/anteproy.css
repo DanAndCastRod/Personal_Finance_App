@@ -1,0 +1,76 @@
+:root{
+    --font-size-apa:12px !important;
+}
+/* @media print{ */
+    .apa-page {
+        font-family: 'Times New Roman', Times, serif; /* Para trabajos impresos */
+        font-size: var(--font-size-apa); /* Tamaño de fuente para trabajos impresos */
+        line-height: 2; /* Interlineado doble */
+        margin: 1in; /*Márgenes de 1 pulgada en todos los lados*/
+        text-align: justify; 
+    }
+    .apa-cover {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 12px;
+        line-height: 2;
+        text-align: center !important;
+        margin: 1in;
+        padding: 0;
+        width: auto;
+        height: 75vh;
+    }
+    .encabezado-seccion{
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .titulo {
+        font-weight: bold;
+        text-align: center; /* Títulos centrados */
+        font-size: var(--font-size-apa);
+        text-transform: uppercase;
+    }
+    
+    .subtitulo {
+        font-weight: bold;
+        text-align: left; /* Subtítulos alineados a la izquierda */
+        font-size: var(--font-size-apa);
+        text-transform: uppercase;
+    }
+    
+    ul {
+        list-style-type: none;
+        padding-left: 0; /* Elimina el padding para listas */
+    }
+    
+    p {
+        text-indent: 0.5in; /* Sangría de primera línea de cada párrafo */
+        margin: 0; /* Sin espacios entre párrafos, manteniendo interlineado doble */
+        text-align: justify;
+    }
+    
+
+    
+    /* Estilos para el resto del documento */
+    
+    .page-break {
+        page-break-after: always; /* Asegura un salto de página después de la portada */
+    }
+    #saveChanges{
+        display: none;
+    }
+    /* Otros estilos específicos */
+    .container {
+          width: auto !important;
+          text-align: center;
+          margin: 0 !important;
+          /* margin-left: auto !important; */
+          /* margin-right: auto !important; */
+    }
+    .link-indice{
+        text-decoration: none;
+        color:black
+    }
+
+/* } */
+
