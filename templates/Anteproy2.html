@@ -76,7 +76,9 @@
             <div class="page-break"></div>
             <div class="apa-page apa-introduccion">
                 <div class="encabezado-seccion" id="encabezado-introduccion">Introducción</div>
-                <p></p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet minima sapiente illo soluta quibusdam est, magnam consequatur saepe, sint ex quaerat, dignissimos optio. Reprehenderit vero exercitationem temporibus sed eius. Earum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus deleniti velit animi aliquid ut, veritatis ex laudantium, eligendi, vel cupiditate magni. Provident, dicta. Animi laudantium illum beatae, ipsum perferendis consectetur. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio, veritatis accusantium illum delectus, earum fugit quaerat quibusdam quo soluta dolor ullam corporis quis error eligendi eveniet quod nulla! Rerum, molestias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt dolorem dolore ut similique. Ad nesciunt velit libero neque unde odio eum in laborum incidunt, nostrum esse aspernatur ratione sunt accusamus?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, vitae in! Voluptates cum voluptate porro quis, eos aperiam error doloribus consectetur corporis labore nisi dignissimos autem minus amet iusto sed. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta possimus repellendus eveniet architecto facere provident excepturi quod perferendis veritatis, explicabo nostrum. Nostrum vitae non alias delectus aliquid, repellat ea fugit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat eos et, cum perspiciatis sunt porro quidem qui nostrum voluptates, repellat sapiente distinctio officiis nesciunt blanditiis, quam deleniti ut aut. Id. Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perferendis unde ratione asperiores, rerum alias, quos atque eaque non delectus quas, deserunt voluptatem! Nostrum deleniti sit, fugit nulla incidunt harum? Lorem ipsum dolor sit, amet consectetur adipisicing elit. A, rem. Praesentium sed deserunt harum saepe culpa, nemo, quod ut possimus facilis ipsa dolores similique voluptatem necessitatibus fugiat optio officiis quibusdam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim incidunt, illo quibusdam, non sequi at et delectus tempore doloremque fuga asperiores voluptate! Quibusdam nemo suscipit accusantium beatae dolorem repellat corrupti. Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae numquam, vero ut qui fugiat molestiae cum obcaecati! Accusamus delectus ab fuga dolores veritatis. Nam commodi autem saepe magni repellendus dolore!</p>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente delectus eum totam vel quos amet ipsam facilis voluptatibus est eligendi repellendus, quidem quae reprehenderit consequuntur sequi mollitia provident earum nulla! Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, voluptatibus. Quo voluptatum placeat enim qui blanditiis iure maxime molestias? Magnam cupiditate dignissimos voluptatem architecto fugit eos ut neque esse vero? Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolor at ducimus soluta. Voluptatum obcaecati laborum quidem magnam error, quo neque, tempora sint commodi nihil mollitia iste earum, hic adipisci? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex dolor fugit reiciendis veritatis quia, tenetur laborum. Cupiditate voluptatum expedita enim iure harum velit quia placeat vel dolorum ducimus, ipsam sunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt soluta nam reprehenderit accusantium! Dicta voluptatem laudantium aperiam. Excepturi, eaque? Dolore eligendi consequatur optio dolor nemo cum ea atque repellendus quisquam. Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ipsa necessitatibus ea deserunt eius dolorem, eveniet animi praesentium voluptatibus assumenda, inventore aspernatur nesciunt iusto! Rerum saepe quasi possimus ipsa ut! Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, reiciendis eos. Quasi molestiae illum incidunt nesciunt quod iste omnis quo ab voluptates et quidem, maiores doloribus dolore tenetur harum ratione. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, obcaecati dolorum at, accusamus expedita incidunt neque, suscipit quidem nostrum a hic praesentium veritatis maxime ab optio sunt laudantium eaque numquam!</p>
             </div>
             <div class="page-break"></div>
             <div class="apa-page apa-metodologia">
@@ -129,21 +131,23 @@
             function calculatePageNumbers() {
                 const pageHeight = 1123; // Ajusta esto según el tamaño de tu página
                 const sections = document.querySelectorAll('.encabezado-seccion');
-
+                var add_break = 1
                 sections.forEach(section => {
-                    const pageNum = Math.floor(section.offsetTop / pageHeight) + 1;
+                    add_break += section.parentElement.previousElementSibling.className.includes('break')?1:0
+                    const pageNum = Math.floor(section.offsetTop / pageHeight) + 1 +add_break;
                     const sectionId = section.id;
-                    const indexLink = document.getElementById(`numeracion_${sectionId}`);
+                    const indexLink = document.getElementById(`numeracion_${sectionId.replace('-','_')}`);
                     if(indexLink) {
                         indexLink.textContent = pageNum;
                     }
                 });
             }
 
-window.addEventListener('beforeprint', calculatePageNumbers);
-
-
             window.addEventListener('beforeprint', calculatePageNumbers);
+
+
+
+        
 
         </script>
     </body>

@@ -1,5 +1,5 @@
 :root{
-    --font-size-apa:12px !important;
+    --font-size-apa:16px !important;
 }
 /* @media print{ */
     .apa-page {
@@ -11,11 +11,11 @@
     }
     .apa-cover {
         font-family: 'Times New Roman', Times, serif;
-        font-size: 12px;
+        font-size: var(--font-size-apa);
         line-height: 2;
         text-align: center !important;
-        margin: 1in;
-        padding: 0;
+        margin: auto;
+        padding: 1in;
         width: auto;
         height: 75vh;
     }
@@ -63,7 +63,7 @@
     .container {
           width: auto !important;
           text-align: center;
-          margin: 0 !important;
+          margin: auto !important;
           /* margin-left: auto !important; */
           /* margin-right: auto !important; */
     }
