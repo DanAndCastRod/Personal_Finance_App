@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Presupuesto form</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <link rel="shortcut icon" href="../img/ejecoom_icon-removebg-preview.ico" type="image/x-icon">
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link rel="stylesheet" href="../style/bootstrap.min.css">
+        <link rel="stylesheet" href="../style/aside.css">
+
+    </head>
+    <style>
+        *{
+            --sidebar-width: 250px;
+
+        }
+        main{}
+        
+    </style>
+    <body>
+        <header>
+            
+            <nav
+                class="navbar navbar-expand-sm navbar-light bg-light"
+            >
+                <div class="container">
+                    <a class="navbar-brand" href="/">
+                        <img src="../img/ejecoom_icon-removebg-preview.ico" style="width: 32px; height: 32px;"> Eje comercial y Financiero</a>
+                    <!-- <button
+                        class="navbar-toggler d-lg-none"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId"
+                        aria-controls="collapsibleNavId"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavId">
+                        <ul class=" navbar-nav me-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" aria-current="page"
+                                    >Home
+                                    <span class="visually-hidden">(current)</span></a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="dropdownId"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    >Dropdown</a
+                                >
+                                <div
+                                    class="dropdown-menu"
+                                    aria-labelledby="dropdownId"
+                                >
+                                    <a class="dropdown-item" href="#"
+                                        >Action 1</a
+                                    >
+                                    <a class="dropdown-item" href="#"
+                                        >Action 2</a
+                                    >
+                                </div>
+                            </li>
+                        </ul>
+                        <form class="  d-flex my-2 my-lg-0">
+                            <input
+                                class="form-control me-sm-2"
+                                type="text"
+                                placeholder="Search"
+                            />
+                            <button
+                                class="btn btn-outline-success my-2 my-sm-0"
+                                type="submit"
+                            >
+                                Search
+                            </button>
+                        </form>
+                    </div> -->
+                </div>
+            </nav>
+            
+        </header>
+        <main>
+            <aside id="sidebar" class="p-3">
+                <div>
+                    <h4>Menu principal</h4>
+                    <ul class="nav d-flex flex-column" style="flex-direction: column;">
+                        <li class="nav-item mt-3">
+                            <a href="/" class="nav-link">
+                                <span data-feather="home"></span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <a href="./gastos_diarios.html" class="nav-link">
+                                <span data-feather="dollar-sign"></span>
+                                Gastos Diarios
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <a href="./presupuesto.html" class="nav-link active">
+                                <span data-feather="file"></span>
+                                Gastos Programados
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </aside>
+            <div id="button_aside" class="mx-3" role="tablist">
+                <label class="container2">
+                    <input checked="checked" type="checkbox" onclick="showaside()">
+                    <svg viewBox="0 0 320 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="chevron-right"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>
+                  </label>
+            </div>
+            <div class="container ">
+                <div class="pt-3 d-flex justify-content-between">
+                    <h2 >Añadir nuevo presupuesto</h2>
+                    <div>
+                        <button class="btn btn-outline-success" onclick="send_data()">Enviar</a>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <div class="row">
+                        <div class="col">
+                            <label for="plazo" class="form-check-label">Periodicidad</label>
+                            
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group" name="plazo" id="plazo" onchange="display_frequencias(this)">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio0" autocomplete="off" checked>
+                                <label class="btn btn-outline-primary" for="btnradio0">Sin repeteción</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio1">Diaria</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio2">Semanal</label>
+                              
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio3">Quincenal</label>
+
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="btnradio4">Mensual</label>
+                              </div>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row" id="frecuencia">
+                        <div class="mt-3 col-md-4 d-none">
+                            <label for="freq_sem" class="form-label">Frecuencia semanal</label>
+                            <select name="freq_sem" id="freq_sem" class="form-control form-select">
+                                <option value=""></option>
+                                <option value="1">L</option>
+                                <option value="2">M</option>
+                                <option value="3">X</option>
+                                <option value="4">J</option>
+                                <option value="5">V</option>
+                                <option value="6">S</option>
+                                <option value="7">D</option>
+                            </select>
+                            <small id="helpId" class="form-text text-muted">Selecciona el día de la semana</small>
+                        </div>
+                        
+                        <div class="mt-3 col-md-4 d-none">
+                            <label for="freq_quin" class="form-label">Frecuencia Quincenal</label>
+                            <select name="freq_quin" id="freq_quin" class="form-control form-select">
+                                <option value=""></option>
+                                <option value="1">Primera Quincena</option>
+                                <option value="2">Segunda Quincena</option>
+                            </select>
+                            <small id="helpId" class="form-text text-muted">Selecciona La Quincena </small>
+                        </div>
+                        <div class="mt-3 col-md-4 d-none">
+                            <label for="freq_mes" class="form-label">Frecuencia Mensual</label>
+                            <input name="freq_mes" id="freq_mes" class="form-control" list="listadias">
+                            </input>
+                            <datalist id="listadias">
+                                <option value=""></option>
+                                <option value="1">1</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="15">15</option>
+                                <option value="20">20</option>
+                                <option value="25">25</option>
+                                <option value="30">30</option>
+                            </datalist>
+                            <small id="helpId" class="form-text text-muted">Selecciona el día del mes </small>
+                        </div>
+                        <div class="mt-3 col"></div>
+
+                    </div>
+
+                    <div class="row" id="gastos">
+                        
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button
+                            type="button"
+                            name="btn_add_gasto"
+                            id="btn_add_gasto"
+                            class="btn btn-outline-secondary btn-sm"
+                            onclick="add_gasto()"
+                        >
+                            + añadir gasto
+                        </button>
+                    </div>
+                    
+                </div>
+            </div>
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+
+        <modalas>
+
+        </modalas>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="../scripts/popper.min.js"></script>
+        <script src="../scripts/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script src="../scripts/script.js"></script>
+        <script>
+          feather.replace()
+        </script>
+        <script>
+            showed = false
+            function showaside(){
+                if(showed){
+                    sidebar.style.left = "-250px"
+                    button_aside.style.left = '0'
+
+                    showed = false
+                }else{
+                    sidebar.style.left = "0"
+                    showed = true
+                    button_aside.style.left = 'var(--sidebar-width)'
+                }
+
+
+            }
+            showaside()
+            function display_frequencias(element){
+                element.querySelectorAll('input').forEach(e=>{
+                    if(e.checked){
+                        switch(e.id){
+                            case 'btnradio2':
+                                frecuencia.querySelectorAll('.col-md-4').forEach(e=> e.classList.add('d-none'))
+                                freq_sem.parentElement.classList.remove('d-none')
+                                break
+                            case 'btnradio3':
+                                frecuencia.querySelectorAll('.col-md-4').forEach(e=> e.classList.add('d-none'))
+                                freq_quin.parentElement.classList.remove('d-none')
+                                break
+                            case 'btnradio4':
+                                frecuencia.querySelectorAll('.col-md-4').forEach(e=> e.classList.add('d-none'))
+                                freq_mes.parentElement.classList.remove('d-none')
+                                break
+                            default:
+                                frecuencia.querySelectorAll('.col-md-4').forEach(e=> e.classList.add('d-none'))
+                                break
+
+                        }
+                    }
+                })
+            }
+            function add_gasto(){
+                gastos.innerHTML += `
+                <div class="row mb-2" id="fila">
+                            <div class="col">
+                                <label class="form-label"for="">Nombre </label>
+                                <input type="text" class="name form-control form-control">
+                                <small class='form-text text-muted'>Ingrese o Seleccione el nombre del gasto</small>
+                            </div>
+                            <div class="col">
+                                <label class="form-label"for="">Valor </label>
+                                <input type="text" class="value form-control form-control">
+                                <small class='form-text text-muted'>Ingrese o seleccione el valor presupuestado</small>
+                            </div>
+                            <div class="col">
+                                <label class="form-label"for="">Categoría </label>
+                                <input type="text" class="cat form-control form-control">
+                                <small class='form-text text-muted'>Ingrese o seleccione una categoría</small>
+                            </div>
+                            <div class="col-md-1 align-self-center" onclick="deleterow(this)" style="cursor:pointer;width:5px">x</div>
+                        </div>
+                `
+            }
+            function deleterow(element){
+                element.parentElement.remove()
+            }
+            function send_data(){
+                // Periodicidad y frecuencia
+                var freq;
+                var plz 
+                plazo.querySelectorAll('input').forEach(e => {
+                    if(e.checked){
+                        plz= e.id.split('btnradio')[1]
+                        switch(e.id){
+                            case 'btnradio2':
+                                freq = freq_sem.value
+                                break
+                            case 'btnradio3':
+                                freq = freq_quin.value
+                                break
+                            case 'btnradio4':
+                                freq = freq_mes.value
+                                break
+                            default:
+                                freq = null
+                                break
+
+                        }
+                    }
+                })
+
+
+
+                Data_send={
+                    id_presupuesto:create_id2(),
+                    id_usuario:1088344174,
+                    periodo: parseInt(plz)+1,
+                    frecuencia: freq,
+                    Registros:[]
+                }
+                document.querySelectorAll('#fila').forEach(e=>{
+                    Data_send.Registros.push({nombre:e.querySelector('.name').value,monto:e.querySelector('.value').value,categoria:e.querySelector('.cat').value})   
+                })
+
+                fetch('https://app.ejecomercial.co:1880/post_presupuesto/',{
+                    method:"POST",
+                    headers: {'Content-Type':'application/json'},
+                    body:JSON.stringify(Data_send)
+                }).then(response=> response.text())
+                .then(response=>{
+                    
+                })
+
+            }
+            
+        </script>
+        
+    </body> 
+</html>

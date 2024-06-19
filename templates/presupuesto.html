@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Presupuesto</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link rel="stylesheet" href="../style/bootstrap.min.css">
+        <link rel="stylesheet" href="../style/aside.css">
+        <link rel="shortcut icon" href="../img/ejecoom_icon-removebg-preview.ico" type="image/x-icon">
+    </head>
+    <style>
+        *{
+            --sidebar-width: 250px;
+
+        }
+        main{}
+        
+    </style>
+    <body>
+        <header>
+            
+            <nav
+                class="navbar navbar-expand-sm navbar-light bg-light"
+            >
+                <div class="container">
+                    <a class="navbar-brand" href="/">
+                        <img src="../img/ejecoom_icon-removebg-preview.ico" alt="" style="width: 32px; height: 32px;">
+                        Finanzas personales</a>
+                    <!-- <button
+                        class="navbar-toggler d-lg-none"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId"
+                        aria-controls="collapsibleNavId"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavId">
+                        <ul class=" navbar-nav me-auto mt-2 mt-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" aria-current="page"
+                                    >Home
+                                    <span class="visually-hidden">(current)</span></a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="dropdownId"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                    >Dropdown</a
+                                >
+                                <div
+                                    class="dropdown-menu"
+                                    aria-labelledby="dropdownId"
+                                >
+                                    <a class="dropdown-item" href="#"
+                                        >Action 1</a
+                                    >
+                                    <a class="dropdown-item" href="#"
+                                        >Action 2</a
+                                    >
+                                </div>
+                            </li>
+                        </ul>
+                        <form class="  d-flex my-2 my-lg-0">
+                            <input
+                                class="form-control me-sm-2"
+                                type="text"
+                                placeholder="Search"
+                            />
+                            <button
+                                class="btn btn-outline-success my-2 my-sm-0"
+                                type="submit"
+                            >
+                                Search
+                            </button>
+                        </form>
+                    </div> -->
+                </div>
+            </nav>
+            
+        </header>
+        <main>
+            <aside id="sidebar" class="p-3">
+                <div>
+                    <h4>Menu principal</h4>
+                    <ul class="nav d-flex flex-column" style="flex-direction: column;">
+                        <li class="nav-item mt-3">
+                            <a href="/" class="nav-link">
+                                <span data-feather="home"></span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <a href="./gastos_diarios.html" class="nav-link">
+                                <span data-feather="dollar-sign"></span>
+                                Gastos Diarios
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3">
+                            <a href="./presupuesto.html" class="nav-link active">
+                                <span data-feather="file"></span>
+                                Gastos Programados
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </aside>
+            <div id="button_aside" class="mx-3" role="tablist">
+                <label class="container2">
+                    <input checked="checked" type="checkbox" onclick="showaside()">
+                    <svg viewBox="0 0 320 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="chevron-right"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>
+                  </label>
+            </div>
+            <div class="container ">
+                <div class="pt-3 d-flex justify-content-between">
+                    <h2>Prespuesto</h2>
+                    <div>
+                        <a
+                            name=""
+                            id=""
+                            class="btn btn-outline-secondary"
+                            href="./presupuesto_ingreso.html"
+                            role="button"
+                            >+ Añadir nuevo presupuesto</a
+                        >
+                        
+                    </div>
+                </div>
+                <div class="mt-3" id="containerdata">
+                    
+                    
+                    <div class="accordion" id="reg_presupuesto">
+
+                        
+                    </div>
+                    
+                </div>
+               
+                
+            </div>
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="../scripts/popper.min.js"></script>
+        <script src="../scripts/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script>
+          feather.replace()
+        </script>
+        <script>
+            showed = false
+            function showaside(){
+                if(showed){
+                    sidebar.style.left = "-250px"
+                    button_aside.style.left = '0'
+
+                    showed = false
+                }else{
+                    sidebar.style.left = "0"
+                    showed = true
+                    button_aside.style.left = 'var(--sidebar-width)'
+                }
+
+
+            }
+            showaside()
+            function get_frecuencia(elm){
+                var frecuencias;
+                switch(elm.periodo){
+                    case 'Semanal':
+                        frecuencias = ['L','M','X','J','V','S','D']
+                        break
+                    case 'Quincenal':
+                        frecuencias = ['Primera Quincena','Segunda Quincena']
+                        break
+                }
+                return frecuencias
+
+            }
+            function finalize(element){
+                id_prep = element.getAttribute('prep')
+                data_element = {id: element.id, checked: element.checked?1:0}
+                aux_value = format_to_int(element.nextElementSibling.nextElementSibling.innerText)
+                value = element.checked?aux_value:-aux_value
+                element2 = document.querySelector('#ejecutado_'+id_prep)
+                ejecutado_prep = format_to_int(element2.innerText)
+                element2.innerText = format_to_val(ejecutado_prep+value)
+                actualizar_subtotal(id_prep,value)
+                fetch('https://app.ejecomercial.co:1880/change_state',{
+                    method:'PUT',
+                    headers: {'Content-Type':'application/json'},
+                    body:JSON.stringify(data_element)
+                })
+            }
+            function format_to_int(valor){
+                return parseInt(valor.replaceAll('.','').replaceAll('$',''))
+            }
+            function format_to_val(valor){
+                return '$'+valor.toLocaleString('es-ES',{maximumFractionDigits:0})
+            }
+            function actualizar_subtotal(id, value){
+                element_cont = document.querySelector('#pendiente_'+id)
+                element_cont.innerText = format_to_val(format_to_int(element_cont.innerText)-value)
+
+            }
+            fetch('https://app.ejecomercial.co:1880/get_presupuestos/1088344174')
+            .then(response=> response.json())
+            .then(response=> {
+                fetch('https://app.ejecomercial.co:1880/get_presupuestos_detalles/')
+                .then(response2=> response2.json())
+                .then(reg=> {
+                    Reg = reg
+                    
+                    
+                    response.forEach(e => {
+                        monto = 0
+                        ejecutado = 0
+                        Reg.filter(f=>f.id_presupuesto==e.id_presupuesto).forEach(k=>{
+                            monto+=k.monto
+                            ejecutado+= k.checked==1?k.monto:0
+                        })
+                        e.total = monto
+                        e.ejecutado = ejecutado
+                        frecuencias = get_frecuencia(e)
+                        e.n_freq = frecuencias[e.frecuencia-1]
+                    })
+                        
+                    
+                    preps = response
+
+                    inner = ''
+                    response.forEach((e,i)=>{
+                        inner += `
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button
+                                        class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapse_${i}"
+                                        aria-expanded="false"
+                                        aria-controls="collapse_${i}"
+                                    >
+                                        <div class="row justify-content-between " style="width: -webkit-fill-available;">
+                                            <div class="col">${e.id_presupuesto}</div>
+                                            <div class="col text-end mx-3">
+                                                <div>${e.periodo} - ${e.n_freq}</div>
+                                                <div>$${e.total.toLocaleString('es-ES',{maximumFractionDigits:0})}</div>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </h2>
+                                <div
+                                    id="collapse_${i}"
+                                    class="accordion-collapse collapse"
+                                    aria-labelledby="headingOne"
+                                    data-bs-parent="#accordionExample"
+                                >
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card">
+                                                    <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title" /> -->
+                                                    <div class="card-body">
+                                                        <h4 class="card-title text-center" id=total_${e.id_presupuesto}>$${e.total.toLocaleString('es-ES',{maximumFractionDigits:0})}</h4>
+                                                        <p class="card-text text-center">Total</p>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                            <div class="col">
+                                                <div class="card">
+                                                    <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title" /> -->
+                                                    <div class="card-body">
+                                                        <h4 class="card-title text-center" id=ejecutado_${e.id_presupuesto}>$${e.ejecutado.toLocaleString('es-ES',{maximumFractionDigits:0})}</h4>
+                                                        <p class="card-text text-center">Ejecutado</p>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                            <div class="col">
+                                                <div class="card">
+                                                    <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title" /> -->
+                                                    <div class="card-body">
+                                                        <h4 class="card-title text-center" id=pendiente_${e.id_presupuesto}>$${(e.total-e.ejecutado).toLocaleString('es-ES',{maximumFractionDigits:0})}</h4>
+                                                        <p class="card-text text-center">Pendiente</p>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                        <div class="list-group">`
+                                            reg.filter(it=> it.id_presupuesto == e.id_presupuesto).forEach((itm, j)=>{
+                                                checked_prior = itm.checked != 0 ? 'checked':''
+                                                inner += `
+                                                <label class="list-group-item">
+                                                    <div class="row">
+                                                        <input class="form-check-input me-1" type="checkbox" value="" prep="${e.id_presupuesto}" id="${itm.id_reg}" ${checked_prior} onclick='finalize(this)'/>
+                                                        <div class="col">${itm.nombre}</div>
+                                                        <div class="col">$${itm.monto.toLocaleString('es-ES',{maximumFractionDigits:0})}</div>
+                                                        <div class="col">${itm.categoria}</div>
+                                                    </div>
+                                                </label>
+                                                `
+                                            })
+                                            
+                                            
+                                        inner+=`</div>
+                                    </div>
+                                </div>
+                            </div>
+                        ` 
+                    })
+                    reg_presupuesto.innerHTML = inner
+                })
+            })
+        </script>
+    </body> 
+</html>

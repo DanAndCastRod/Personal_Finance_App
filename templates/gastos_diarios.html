@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Pantalla principal</title>
+        <title>Title</title>
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta
@@ -10,9 +10,8 @@
         />
 
         <!-- Bootstrap CSS v5.2.1 -->
-        <link rel="stylesheet" href="/style/bootstrap.min.css">
-        <link rel="stylesheet" href="/style/aside.css">
-        <link rel="shortcut icon" href="/img/ejecoom_icon-removebg-preview.ico" type="image/x-icon">
+        <link rel="stylesheet" href="../style/bootstrap.min.css">
+        <link rel="stylesheet" href="../style/aside.css">
     </head>
     <style>
         *{
@@ -29,9 +28,7 @@
                 class="navbar navbar-expand-sm navbar-light bg-light"
             >
                 <div class="container">
-                    <a class="navbar-brand" href="/">
-                        <img src="/img/ejecoom_icon-removebg-preview.ico" alt="" style="height: 32px; width: 32px;">
-                        Finanzas personales</a>
+                    <a class="navbar-brand" href="/">Finanzas personales</a>
                     <!-- <button
                         class="navbar-toggler d-lg-none"
                         type="button"
@@ -101,19 +98,19 @@
                     <h4>Menu principal</h4>
                     <ul class="nav d-flex flex-column" style="flex-direction: column;">
                         <li class="nav-item mt-3">
-                            <a href="/" class="nav-link active">
+                            <a href="/" class="nav-link">
                                 <span data-feather="home"></span>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item mt-3">
-                            <a href="./templates/gastos_diarios.html" class="nav-link">
+                            <a href="./gastos_diarios.html" class="nav-link">
                                 <span data-feather="dollar-sign"></span>
                                 Gastos Diarios
                             </a>
                         </li>
                         <li class="nav-item mt-3">
-                            <a href="./templates/presupuesto.html" class="nav-link">
+                            <a href="./presupuesto.html" class="nav-link active">
                                 <span data-feather="file"></span>
                                 Gastos Programados
                             </a>
@@ -139,8 +136,8 @@
             <!-- place footer here -->
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
-        <script src="/scripts/popper.min.js"></script>
-        <script src="/scripts/bootstrap.min.js"></script>
+        <script src="../scripts/popper.min.js"></script>
+        <script src="../scripts/bootstrap.min.js"></script>
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
         <script>
           feather.replace()

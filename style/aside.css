@@ -1,0 +1,94 @@
+*{
+            --sidebar-width: 250px;
+
+        }
+        #sidebar{
+            position: fixed;
+            background-color: var(--bs-light);
+            border: var(--bs-card-border-width) solid var(--bs-card-border-color);
+            left: -250px;
+            transition: left 0.3s ease;
+            border-radius: var(--bs-card-border-radius);
+            -webkit-border-radius: var(--bs-card-border-radius);
+            -moz-border-radius: var(--bs-card-border-radius);
+            -ms-border-radius: var(--bs-card-border-radius);
+            -o-border-radius: var(--bs-card-border-radius);
+            width: var(--sidebar-width);
+            height: -webkit-fill-available;
+            z-index: 10;
+            box-shadow: 0 10px 10px ;
+
+        }
+        #sidebar.show{
+            left: 0;
+        }
+        #button_aside{
+            /* rotate: 90deg; */
+            position: fixed;
+            left: 0;
+            /* height: 40px; */
+            /* width: 40px; */
+            margin-top: 45vh;
+            cursor:pointer;
+            transition: left 0.3s ease;
+
+            /* background-color: var(--bs-light); */
+            /* border: ; */
+
+        }
+        /*------ Settings ------*/
+        .container2 {
+            --color: #a5a5b0;
+            --size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            font-size: var(--size);
+            user-select: none;
+            fill: var(--color);
+        }
+
+        .container2 .chevron-right {
+            position: absolute;
+            animation: keyframes-return .5s backwards;
+        }
+
+        /* ------ On check event ------ */
+        .container2 input:checked ~ .chevron-right {
+            animation: keyframes-rotate .5s backwards;
+            transform: rotate(180deg);
+        }
+
+        /* ------ Hide the default checkbox ------ */
+        .container2 input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* ------ Animation ------ */
+        @keyframes keyframes-rotate {
+            0% {
+                transform: rotate(0deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: rotate(180deg);
+            }
+        }
+
+        @keyframes keyframes-return {
+            0% {
+                transform: rotate(180deg);
+                opacity: 0;
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
