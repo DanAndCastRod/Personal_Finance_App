@@ -22,6 +22,7 @@
         main{}
         
     </style>
+
     <body>
         <header>
             
@@ -159,6 +160,58 @@
         <footer>
             <!-- place footer here -->
         </footer>
+        <modals>
+            <div
+            class="modal fade"
+            id="modal_eliminar"
+            tabindex="-1"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            
+            role="dialog"
+            aria-labelledby="modalTitleId"
+            aria-hidden="true"
+           >
+            <div
+                class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                role="document"
+            >
+                <div class="modal-content">
+                    <!-- <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Modal title
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div> -->
+                    <div class="modal-body text-center justify-content-center">
+                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="var(--bs-warning)" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+                          </svg>
+                          <div class="mt-3" id="modal_eliminar_msg">¿Está Seguro que desea eliminar el registro? </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                        >
+                            Cancelar
+                        </button>
+                        <button type="button" class="btn btn-danger" id="btn_confirm_delete">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+           </div>
+
+        </modals>
         <!-- Bootstrap JavaScript Libraries -->
         <script src="../scripts/popper.min.js"></script>
         <script src="../scripts/bootstrap.min.js"></script>
@@ -198,6 +251,25 @@
                 return frecuencias
 
             }
+            function open_modal_eliminar(element){
+                modal = bootstrap.Modal.getOrCreateInstance(modal_eliminar)
+                modal.show()
+                modal_eliminar_msg.innerText = '¿Está seguro que desea eliminar el registro: '+element.id.split('_')[1]
+                btn_confirm_delete.setAttribute('id_aux', element.id)
+                btn_confirm_delete.setAttribute('onclick', 'eliminar(btn_confirm_delete)')
+
+            }
+            function eliminar(element){
+                id_registro = element.getAttribute('id_aux').split('_')[1]
+
+                fetch('https://app.ejecomercial.co:1880/delete_presupuesto/'+id_registro,{
+                    method:'DELETE'
+                })
+                .then(response=>response.text())
+                .then(response=>{
+                    window.location.reload()
+                })
+            }
             function finalize(element){
                 id_prep = element.getAttribute('prep')
                 data_element = {id: element.id, checked: element.checked?1:0}
@@ -224,6 +296,9 @@
                 element_cont.innerText = format_to_val(format_to_int(element_cont.innerText)-value)
 
             }
+            function send_to_edit(element){
+                window.location.href = `./presupuesto_ingreso.html?id=${element.id.split('_')[1]}`
+            }
             fetch('https://app.ejecomercial.co:1880/get_presupuestos/1088344174')
             .then(response=> response.json())
             .then(response=> {
@@ -243,11 +318,12 @@
                         e.total = monto
                         e.ejecutado = ejecutado
                         frecuencias = get_frecuencia(e)
-                        e.n_freq = e.frecuencia == 'null'?'': frecuencias[e.frecuencia-1]
+                        e.n_freq = e.periodo == 'Mensual' ? e.frecuencia: e.frecuencia == 'null'?'': frecuencias[e.frecuencia-1]
                     })
                         
                     
                     preps = response
+
 
                     inner = ''
                     response.forEach((e,i)=>{
@@ -268,6 +344,17 @@
                                                 <div>${e.periodo} - ${e.n_freq}</div>
                                                 <div>$${e.total.toLocaleString('es-ES',{maximumFractionDigits:0})}</div>
                                             </div>
+                                            <div class="col-2" >
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a name=""id="edit_${e.id_presupuesto}"class="btn btn-outline-secondary btn-sm " onclick=send_to_edit(this) role="button">Editar</a> 
+                                                    </div>
+                                                    <div class="col">
+                                                        <a name=""id="delete_${e.id_presupuesto}"class="btn btn-outline-danger btn-sm " onclick=open_modal_eliminar(this) role="button">Eliminar</a> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                  
                                         </div>
                                     </button>
                                 </h2>
@@ -278,8 +365,8 @@
                                     data-bs-parent="#accordionExample"
                                 >
                                     <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col">
+                                        <div class="row justify-content-around">
+                                            <div class="col m-2">
                                                 <div class="card">
                                                     <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title" /> -->
                                                     <div class="card-body">
@@ -288,7 +375,7 @@
                                                     </div>
                                                 </div>    
                                             </div>
-                                            <div class="col">
+                                            <div class="col m-2">
                                                 <div class="card">
                                                     <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title" /> -->
                                                     <div class="card-body">
@@ -297,7 +384,7 @@
                                                     </div>
                                                 </div>    
                                             </div>
-                                            <div class="col">
+                                            <div class="col m-2">
                                                 <div class="card">
                                                     <!-- <img class="card-img-top" src="holder.js/100px180/" alt="Title" /> -->
                                                     <div class="card-body">
