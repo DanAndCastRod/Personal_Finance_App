@@ -192,6 +192,8 @@
                     case 'Quincenal':
                         frecuencias = ['Primera Quincena','Segunda Quincena']
                         break
+                    default:
+                        frecuencias = []
                 }
                 return frecuencias
 
@@ -241,7 +243,7 @@
                         e.total = monto
                         e.ejecutado = ejecutado
                         frecuencias = get_frecuencia(e)
-                        e.n_freq = frecuencias[e.frecuencia-1]
+                        e.n_freq = e.frecuencia == 'null'?'': frecuencias[e.frecuencia-1]
                     })
                         
                     
