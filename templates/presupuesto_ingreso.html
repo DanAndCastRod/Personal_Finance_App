@@ -32,18 +32,18 @@
                 <div class="container">
                     <a class="navbar-brand" href="/">
                         <img src="../img/ejecoom_icon-removebg-preview.ico" style="width: 32px; height: 32px;"> Eje comercial y Financiero</a>
-                    <!-- <button
+                    <button
                         class="navbar-toggler d-lg-none"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapsibleNavId"
-                        aria-controls="collapsibleNavId"
+                        data-bs-target="#sidebar"
+                        aria-controls="sidebar"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
-                        <span class="navbar-toggler-icon"></span>
+                        <!-- <span class="navbar-toggler-icon"></span> -->
                     </button>
-                    <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <!--<div class="collapse navbar-collapse" id="sidebar">
                         <ul class=" navbar-nav me-auto mt-2 mt-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#" aria-current="page"
@@ -122,12 +122,12 @@
 
                 </div>
             </aside>
-            <div id="button_aside" class="mx-3" role="tablist">
+            <!-- <div id="button_aside" class="mx-3" role="tablist">
                 <label class="container2">
                     <input checked="checked" type="checkbox" onclick="showaside()">
                     <svg viewBox="0 0 320 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="chevron-right"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>
                   </label>
-            </div>
+            </div> -->
             <div class="container ">
                 <div class="pt-3 d-flex justify-content-between">
                     <h2 >Añadir nuevo presupuesto</h2>
@@ -142,19 +142,19 @@
                             
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group" name="plazo" id="plazo" onchange="display_frequencias(this)">
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio0" autocomplete="off" checked>
-                                <label class="btn btn-outline-primary" for="btnradio0">Sin repeteción</label>
+                                <label class=" btn btn-sm btn-outline-primary" for="btnradio0">Sin repeteción</label>
 
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio1">Diaria</label>
+                                <label class=" btn btn-sm btn-outline-primary" for="btnradio1">Diaria</label>
                               
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio2">Semanal</label>
+                                <label class=" btn btn-sm btn-outline-primary" for="btnradio2">Semanal</label>
                               
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio3">Quincenal</label>
+                                <label class=" btn btn-sm btn-outline-primary" for="btnradio3">Quincenal</label>
 
                                 <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                                <label class="btn btn-outline-primary" for="btnradio4">Mensual</label>
+                                <label class=" btn btn-sm btn-outline-primary" for="btnradio4">Mensual</label>
                               </div>
                         </div>
                         <div class="col"></div>
@@ -333,22 +333,22 @@
                 })
 
             }
-            showed = false
-            function showaside(){
-                if(showed){
-                    sidebar.style.left = "-250px"
-                    button_aside.style.left = '0'
+            // showed = false
+            // function showaside(){
+            //     if(showed){
+            //         sidebar.style.left = "-250px"
+            //         button_aside.style.left = '0'
 
-                    showed = false
-                }else{
-                    sidebar.style.left = "0"
-                    showed = true
-                    button_aside.style.left = 'var(--sidebar-width)'
-                }
+            //         showed = false
+            //     }else{
+            //         sidebar.style.left = "0"
+            //         showed = true
+            //         button_aside.style.left = 'var(--sidebar-width)'
+            //     }
 
 
-            }
-            showaside()
+            // }
+            // showaside()
             function display_frequencias(element){
                 element.querySelectorAll('input').forEach(e=>{
                     if(e.checked){

@@ -12,3 +12,8 @@ function create_id2(){
 
       
 }
+if(document.documentElement.scrollWidth>1500){
+    sidebar.classList.add('show')
+}else{
+    sidebar.classList.remove('show')
+}

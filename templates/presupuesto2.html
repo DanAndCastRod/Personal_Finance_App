@@ -1,4 +1,4 @@
-    <!doctype html>
+<!doctype html>
 <html lang="en">
     <head>
         <title>Presupuesto</title>
@@ -33,19 +33,18 @@
                     <a class="navbar-brand" href="/">
                         <img src="../img/ejecoom_icon-removebg-preview.ico" alt="" style="width: 32px; height: 32px;">
                         Finanzas personales</a>
-                        <!-- d-lg-none" -->
-                        <button
-                        class="navbar-toggler" 
+                    <!-- <button
+                        class="navbar-toggler d-lg-none"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#sidebar"
-                        aria-controls="sidebar"
+                        data-bs-target="#collapsibleNavId"
+                        aria-controls="collapsibleNavId"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
-                        <!-- <span class="navbar-toggler-icon"></span> -->
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                    <!-- <div class="collapse navbar-collapse" id="sidebar">
+                    <div class="collapse navbar-collapse" id="collapsibleNavId">
                         <ul class=" navbar-nav me-auto mt-2 mt-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#" aria-current="page"
@@ -98,7 +97,7 @@
             
         </header>
         <main>
-            <aside id="sidebar" class=" p-3 collapse navbar-collapse">
+            <aside id="sidebar" class="p-3">
                 <div>
                     <h4>Menu principal</h4>
                     <ul class="nav d-flex flex-column" style="flex-direction: column;">
@@ -124,12 +123,12 @@
 
                 </div>
             </aside>
-                <!-- <div id="button_aside" class="mx-3" role="tablist">
-                    <label class="container2">
-                        <input checked="checked" type="checkbox" onclick="showaside()">
-                        <svg viewBox="0 0 320 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="chevron-right"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>
-                    </label>
-                </div> -->
+            <div id="button_aside" class="mx-3" role="tablist">
+                <label class="container2">
+                    <input checked="checked" type="checkbox" onclick="showaside()">
+                    <svg viewBox="0 0 320 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="chevron-right"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>
+                  </label>
+            </div>
             <div class="container ">
                 <div class="pt-3 d-flex justify-content-between">
                     <h2>Prespuesto</h2>
@@ -217,12 +216,11 @@
         <script src="../scripts/popper.min.js"></script>
         <script src="../scripts/bootstrap.min.js"></script>
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-        <script src="../scripts/script.js"></script>
         <script>
           feather.replace()
         </script>
         <script>
-            /**showed = false
+            showed = false
             function showaside(){
                 if(showed){
                     sidebar.style.left = "-250px"
@@ -237,9 +235,7 @@
 
 
             }
-                
-            showaside()**/
-            
+            showaside()
             function get_frecuencia(elm){
                 var frecuencias;
                 switch(elm.periodo){

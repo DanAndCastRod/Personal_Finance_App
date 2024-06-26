@@ -29,18 +29,18 @@
             >
                 <div class="container">
                     <a class="navbar-brand" href="/">Finanzas personales</a>
-                    <!-- <button
+                     <button
                         class="navbar-toggler d-lg-none"
                         type="button"
                         data-bs-toggle="collapse"
-                        data-bs-target="#collapsibleNavId"
-                        aria-controls="collapsibleNavId"
+                        data-bs-target="#sidebar"
+                        aria-controls="sidebar"
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <!--<div class="collapse navbar-collapse" id="sidebar">
                         <ul class=" navbar-nav me-auto mt-2 mt-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#" aria-current="page"
@@ -93,7 +93,7 @@
             
         </header>
         <main>
-            <aside id="sidebar" class="p-3">
+            <aside id="sidebar" class="p-3 collapse navbar-collapse">
                 <div>
                     <h4>Menu principal</h4>
                     <ul class="nav d-flex flex-column" style="flex-direction: column;">
@@ -139,10 +139,11 @@
         <script src="../scripts/popper.min.js"></script>
         <script src="../scripts/bootstrap.min.js"></script>
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+        <script src="../scripts/script.js"></script>
         <script>
           feather.replace()
         </script>
-        <script>
+        <!-- <script>
             showed = false
             function showaside(){
                 if(showed){
@@ -159,6 +160,6 @@
 
             }
             showaside()
-        </script>
+        </script> -->
     </body> 
 </html>
