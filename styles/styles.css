@@ -137,8 +137,8 @@
     --gb-code-color: #d63384;
     --gb-highlight-bg: #fff3cd;
 
-    --gb-hamburguers:var(--gb-white);
-
+    --gb-hamburguers:var(--gb-blue);
+    --side-bar-width: 320px;
 }
 
 /* Clases de texto personalizadas basadas en las variables del root */
@@ -24029,7 +24029,7 @@ a,button,.btn {
 .app-header__logo {
     padding: 0 1.5rem;
     height: 60px;
-    width: 320px;
+    width: var(--side-bar-width);
     display: flex;
     align-items: center;
     transition: width .2s;
@@ -24355,13 +24355,13 @@ a,button,.btn {
 }
 
 .app-sidebar {
-    width: 320px;
+    width: var(--side-bar-width);
     display: flex;
     z-index: 11;
     overflow: hidden;
-    min-width: 320px;
+    min-width: var(--side-bar-width);
     position: relative;
-    flex: 0 0 320px;
+    flex: 0 0 var(--side-bar-width);
     margin-top: -60px;
     padding-top: 60px;
     transition: all .2s

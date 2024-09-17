@@ -52,9 +52,31 @@ svg_factory=`
                                     </g>
                                 </g>
                             </svg>
-`
 
+`
+svg_logout=`
+<svg viewBox = "0 0 64 64">
+                                <defs>
+                                    <style>
+                                        .st3{
+                                            fill: none;
+                                            stroke: #343a40;
+                                            stroke-width: 1.5px;
+                                            stroke-miterlimit: 10;
+                                        }
+                                    </style>
+                                </defs>
+                                <g id="capa_3" data-name="Capa 2">
+                                    <g id="capa_3-2" data-name="Capa 1">
+                                        <path class="st3" d="M37,53h10c0,0,4,0,4-5s0-28,0-28s1-5-5-5s-9,0-9,0"/>
+                                        <path class="st3" d="M26.5,39.5h11c0.6,0,1-0.5,1-1v-8c0-0.6-0.5-1-1-1h-11v-7v-1.3c0-0.9-1.1-1.4-1.8-0.7L14.1,32.8
+                                            c-0.3,0.4-0.3,0.9,0,1.3l10.7,12.3c0.6,0.7,1.7,0.3,1.7-0.7V39.5z"/>
+                                    </g>
+                                </g>
+                            </svg>
+`
 document.querySelectorAll('icon-factory').forEach(e=>e.outerHTML = svg_factory)
+document.querySelectorAll('icon-logout').forEach(e=>e.outerHTML = svg_logout)
 // Asignar eventos a los elementos cargados (asegúrate de que el contenido esté en el DOM)
 document.querySelectorAll('.close-sidebar-btn').forEach(e => {
     e.setAttribute('onclick', 'toggle_sidebar(this)');
