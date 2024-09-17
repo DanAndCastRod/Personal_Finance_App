@@ -121,7 +121,7 @@
     --gb-body-font-weight: 400;
     --gb-body-line-height: 1.5;
     --gb-body-color: #212529;
-    --gb-body-bg: #F0F3F5;
+    --gb-body-bg: #FFFFFF;
     --gb-border-width: 1px;
     --gb-border-style: solid;
     --gb-border-color: #dee2e6;
@@ -137,7 +137,8 @@
     --gb-code-color: #d63384;
     --gb-highlight-bg: #fff3cd;
 
-    --gb-hamburguers:var(--gb-blue);
+    --pyro-main-color: #4f69ff;
+    --gb-hamburguers:var(--pyro-main-color);
     --side-bar-width: 320px;
 }
 
@@ -9879,7 +9880,7 @@ fieldset:disabled .btn {
     --gb-card-inner-border-radius: calc(0.375rem - 1px);
     --gb-card-cap-padding-y: 0.5rem;
     --gb-card-cap-padding-x: 1rem;
-    --gb-card-cap-bg: rgba(0, 0, 0, 0.03);
+    --gb-card-cap-bg: rgba(255, 255,255, 1);
     --gb-card-cap-color: ;
     --gb-card-height: ;
     --gb-card-color: ;
