@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es-CO">
 
 <head>
     <title>Nuevo Movimiento</title>
@@ -353,12 +353,12 @@
             fetch('https://app.ejecomercial.co:1880/get_saldo/'+element.value)
             .then(response=>response.json())
             .then(data=>{
-                cuenta.nextElementSibling.innerHTML = `actualmente tienes <b>$${data[0].saldo.toLocaleString()}</b>`
+                cuenta.nextElementSibling.innerHTML = `actualmente tienes <b>$${data[0].saldo.toLocaleString('ES-CO')}</b>`
                 saldo = data[0].saldo
                 
                 vmonto = monto.value==''?0:parseFloat(monto.value.replaceAll('.','').replace(',','.'))
                 nuevo_saldo = saldo+(tipo.value=="ingreso"?vmonto-data_edit.monto:-vmonto+data_edit.monto)
-                monto_group.nextElementSibling.innerHTML = `el nuevo saldo sería: <b>$${nuevo_saldo.toLocaleString()}</b>`
+                monto_group.nextElementSibling.innerHTML = `el nuevo saldo sería: <b>$${nuevo_saldo.toLocaleString('ES-CO')}</b>`
             })
         }
         // Función para formatear el número con separadores de miles y decimales
@@ -452,7 +452,7 @@
                 Swal.fire({
                     icon:"success",
                     title:'Actualización',
-                    text:'Se ha actualizado un nuevo saldo en '+numero_cuenta+'\n $'+nuevo_saldo.toLocaleString(),
+                    text:'Se ha actualizado un nuevo saldo en '+numero_cuenta+'\n $'+nuevo_saldo.toLocaleString('ES-CO'),
                     confirmButtonText:'Ok'
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -519,7 +519,7 @@
                 cuenta.value = data_edit.id_cuenta
                 cuenta.setAttribute('disabled','')
                 picker.dates.setValue(tempusDominus.DateTime.convert(new Date(data_edit.fecha)))
-                monto.value = data_edit.monto.toLocaleString()
+                monto.value = data_edit.monto.toLocaleString('ES-CO')
                 tipo.value = data_edit.tipo
                 categoria.value = data_edit.categoria
                 btn_save.setAttribute('onclick','actualizar_reg()')
