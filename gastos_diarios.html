@@ -319,7 +319,7 @@
                         </div>
                     </div>
                     <div class="table_col">${e.tipo.toLocaleUpperCase()}</div>
-                    <div class="table_col " style="font-size: x-large;">$${e.saldo.toLocaleString()}</div>
+                    <div class="table_col " style="font-size: x-large;">$${e.saldo.toLocaleString('es-CO')}</div>
                     <div class="mr-3 align-self-center">
                         <a href="#edit"><i class="pe-7s-more"></i></a>
                     </div>
@@ -348,9 +348,9 @@
                 body_movimientos.innerHTML+=`
                 <tr role="row" onclick="window.location.href='./gastos_diarios_ingreso.html?edit=${e.id_transaccion}'">
                     <td>${e.categoria}</td>
-                    <td class="${e.tipo!='ingreso'?'text-danger':'text-success'}">${e.tipo!='ingreso'?'-':''}${e.monto.toLocaleString()}</td>
+                    <td class="${e.tipo!='ingreso'?'text-danger':'text-success'}">${e.tipo!='ingreso'?'-':''}${e.monto.toLocaleString('es-CO')}</td>
                     <td>${e.id_cuenta}</td>
-                    <td class="sorting_1 dtr-control">${new Date(e.fecha).toLocaleString()}</td>
+                    <td class="sorting_1 dtr-control">${new Date(e.fecha).toLocaleString('es-CO')}</td>
                     <td>${e.id_transaccion}</td>
                 </tr>
                 `
