@@ -265,46 +265,7 @@
                                 </thead>
                                 <tbody id="body_movimientos">
                                   <!-- Aquí puedes añadir dinámicamente las filas -->
-                                  <tr role="row" class="odd">
-                                    <td class="sorting_1 dtr-control">Ashton Cox</td>
-                                    <td>Junior Technical Author</td>
-                                    <td>San Francisco</td>
-                                    <td>66</td>
-                                    <td>2009/01/12</td>
-                                    <td>$86,000</td>
-                                  </tr>
-                                  <tr role="row" class="even">
-                                    <td class="sorting_1 dtr-control">Bradley Greer</td>
-                                    <td>Software Engineer</td>
-                                    <td>London</td>
-                                    <td>41</td>
-                                    <td>2012/10/13</td>
-                                    <td>$132,000</td>
-                                  </tr>
-                                  <tr role="row" class="odd">
-                                    <td class="sorting_1 dtr-control">Brenden Wagner</td>
-                                    <td>Software Engineer</td>
-                                    <td>San Francisco</td>
-                                    <td>28</td>
-                                    <td>2011/06/07</td>
-                                    <td>$206,850</td>
-                                  </tr>
-                                  <tr role="row" class="even">
-                                    <td class="sorting_1 dtr-control">Brielle Williamson</td>
-                                    <td>Integration Specialist</td>
-                                    <td>New York</td>
-                                    <td>61</td>
-                                    <td>2012/12/02</td>
-                                    <td>$372,000</td>
-                                  </tr>
-                                  <tr role="row" class="odd">
-                                    <td class="sorting_1 dtr-control">Bruno Nash</td>
-                                    <td>Software Engineer</td>
-                                    <td>London</td>
-                                    <td>38</td>
-                                    <td>2011/05/03</td>
-                                    <td>$163,500</td>
-                                  </tr>
+                                  
                                 </tbody>
                                 <tfoot>
                                   <tr>
@@ -340,37 +301,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
 
     <script>
-        function convertirFechaISOaA(fechaISO) {
-            // Crear un objeto Date a partir del formato ISO
-            let fechaObj = new Date(fechaISO);
-
-            // Obtener los componentes de la fecha
-            let dia = fechaObj.getUTCDate().toString().padStart(2, '0');
-            let mes = (fechaObj.getUTCMonth() + 1).toString().padStart(2, '0'); // Los meses empiezan desde 0
-            let anio = fechaObj.getUTCFullYear();
-
-            // Obtener los componentes de la hora
-            let horas = fechaObj.getUTCHours();
-            let minutos = fechaObj.getUTCMinutes().toString().padStart(2, '0');
-            let amPm = 'a. m.';
-
-            // Convertir de formato 24 horas a formato 12 horas
-            if (horas >= 12) {
-                amPm = 'p. m.';
-                if (horas > 12) {
-                    horas -= 12;
-                }
-            } else if (horas === 0) {
-                horas = 12; // Para mostrar las 12:00 a. m.
-            }
-
-            // Formatear la fecha a DD/MM/YYYY y la hora a HH:mm a. m./p. m.
-            let fechaFormateada = `${dia}/${mes}/${anio}, ${horas.toString().padStart(2, '0')}:${minutos} ${amPm}`;
-            return fechaFormateada;
-        }
-
-        id_usuario = 1088344174
         
+        id_usuario = 1088344174
         fetch('https://app.ejecomercial.co:1880/get_cuentas/'+id_usuario).then(response=>response.json())
         .then(response=>{
             table_body_cuentas.innerHTML=''
@@ -393,7 +325,10 @@
                     </div>
                 </div>`
             })
+            
+
         })
+
         fetch('https://app.ejecomercial.co:1880/get_all_movs/'+id_usuario)
         .then(response=>{
             if(!response.ok){
@@ -415,11 +350,12 @@
                     <td>${e.categoria}</td>
                     <td class="${e.tipo!='ingreso'?'text-danger':'text-success'}">${e.tipo!='ingreso'?'-':''}${e.monto.toLocaleString()}</td>
                     <td>${e.id_cuenta}</td>
-                    <td>${convertirFechaISOaA(e.fecha)}</td>
+                    <td class="sorting_1 dtr-control">${new Date(e.fecha).toLocaleString()}</td>
                     <td>${e.id_transaccion}</td>
                 </tr>
                 `
             })
+            
         })
     </script>
     
