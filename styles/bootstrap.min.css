@@ -1627,7 +1627,7 @@
     border-left:.3em solid transparent}
     .dropdown-toggle:empty::after{margin-left:0}
     .dropdown-menu{--gb-dropdown-zindex:1000;
-    --gb-dropdown-min-width:10rem;
+    --gb-dropdown-min-width:15rem;
     --gb-dropdown-padding-x:0;
     --gb-dropdown-padding-y:0.5rem;
     --gb-dropdown-spacer:0.125rem;
