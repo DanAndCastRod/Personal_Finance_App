@@ -201,13 +201,13 @@
                     <div class="pt-3 d-flex justify-content-between">
                         <div class="d-flex align-content-center">
                             <a href="/" class="align-content-center"><i class="pe-7s-angle-left mx-2" style="font-size: 40px;"></i></a>
-                            <h2>Cuentas</h2>
+                            <h2 class="align-content-center">Cuentas</h2>
                         </div>
                         <div>
                             <a
                                 name=""
                                 id=""
-                                class="btn btn-success"
+                                class="btn btn-sm btn-success"
                                 href="./formulario_cuenta.html"
                                 role="button"
                                 >+ Añadir nueva cuenta</a
@@ -243,26 +243,10 @@
                           </div>
                           <div class="btn-actions-pane-right actions-icon-btn">
                             <div class="btn-group dropdown">
-                              <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-icon btn-icon-only btn btn-link">
-                                <i class="pe-7s-plus btn-icon-wrapper"></i>
-                              </button>
-                              <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu-right rm-pointers dropdown-menu-shadow dropdown-menu-hover-link dropdown-menu">
-                                <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                <button type="button" tabindex="0" class="dropdown-item">
-                                  <i class="dropdown-icon lnr-inbox"> </i><span>Menus</span>
-                                </button>
-                                <button type="button" tabindex="0" class="dropdown-item">
-                                  <i class="dropdown-icon lnr-file-empty"> </i><span>Settings</span>
-                                </button>
-                                <button type="button" tabindex="0" class="dropdown-item">
-                                  <i class="dropdown-icon lnr-book"> </i><span>Actions</span>
-                                </button>
-                                <div tabindex="-1" class="dropdown-divider"></div>
-                                <div class="p-3 text-right">
-                                  <button class="mr-2 btn-shadow btn-sm btn btn-link">View Details</button>
-                                  <button class="mr-2 btn-shadow btn-sm btn btn-primary">Action</button>
-                                </div>
-                              </div>
+                              <a  class="btn btn-outline-success btn-sm align-items-center" href="./gastos_diarios_ingreso.html">
+                                <i class="pe-7s-plus btn-icon-wrapper"></i> Agregar movimiento
+                              </a>
+                              
                             </div>
                           </div>
                         </div>
@@ -272,12 +256,11 @@
                               <table id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
                                 <thead>
                                   <tr role="row">
-                                    <th>ID</th>
+                                    <th>Categoría</th>
+                                    <th>Monto</th>
                                     <th>Cuenta</th>
                                     <th>Fecha</th>
-                                    <th>Monto</th>
-                                    <th>Tipo</th>
-                                    <th>Categoría</th>
+                                    <th>ID</th>
                                   </tr>
                                 </thead>
                                 <tbody id="body_movimientos">
@@ -325,12 +308,11 @@
                                 </tbody>
                                 <tfoot>
                                   <tr>
-                                    <th>ID</th>
+                                    <th>Categoría</th>
+                                    <th>Monto</th>
                                     <th>Cuenta</th>
                                     <th>Fecha</th>
-                                    <th>Monto</th>
-                                    <th>Tipo</th>
-                                    <th>Categoría</th>
+                                    <th>ID</th>
                                   </tr>
                                 </tfoot>
                               </table>
@@ -355,8 +337,41 @@
     <script src="./scripts/jquery.min.js"></script>
     <script src="./scripts/popper.min.js"></script>
     <script src="./scripts/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
+
     <script>
-        fetch('https://app.ejecomercial.co:1880/get_cuentas/1088344174').then(response=>response.json())
+        function convertirFechaISOaA(fechaISO) {
+            // Crear un objeto Date a partir del formato ISO
+            let fechaObj = new Date(fechaISO);
+
+            // Obtener los componentes de la fecha
+            let dia = fechaObj.getUTCDate().toString().padStart(2, '0');
+            let mes = (fechaObj.getUTCMonth() + 1).toString().padStart(2, '0'); // Los meses empiezan desde 0
+            let anio = fechaObj.getUTCFullYear();
+
+            // Obtener los componentes de la hora
+            let horas = fechaObj.getUTCHours();
+            let minutos = fechaObj.getUTCMinutes().toString().padStart(2, '0');
+            let amPm = 'a. m.';
+
+            // Convertir de formato 24 horas a formato 12 horas
+            if (horas >= 12) {
+                amPm = 'p. m.';
+                if (horas > 12) {
+                    horas -= 12;
+                }
+            } else if (horas === 0) {
+                horas = 12; // Para mostrar las 12:00 a. m.
+            }
+
+            // Formatear la fecha a DD/MM/YYYY y la hora a HH:mm a. m./p. m.
+            let fechaFormateada = `${dia}/${mes}/${anio}, ${horas.toString().padStart(2, '0')}:${minutos} ${amPm}`;
+            return fechaFormateada;
+        }
+
+        id_usuario = 1088344174
+        
+        fetch('https://app.ejecomercial.co:1880/get_cuentas/'+id_usuario).then(response=>response.json())
         .then(response=>{
             table_body_cuentas.innerHTML=''
             response.forEach(e=>{
@@ -377,6 +392,33 @@
                         <a href="#edit"><i class="pe-7s-more"></i></a>
                     </div>
                 </div>`
+            })
+        })
+        fetch('https://app.ejecomercial.co:1880/get_all_movs/'+id_usuario)
+        .then(response=>{
+            if(!response.ok){
+                throw new Error('Error en la solicitud')
+                swal.fire({
+                    icon: 'error', // Puedes cambiar a 'info', 'warning', 'error', 'question'
+                    title: 'Error',
+                    text: 'No se ha podido cargar la solicitud de movimientos',
+                    confirmButtonText: 'Ok',
+                })
+            }
+            return response.json()
+        })
+        .then(data=>{
+            body_movimientos.innerHTML=''
+            data.forEach(e=>{
+                body_movimientos.innerHTML+=`
+                <tr role="row" onclick="window.location.href='./gastos_diarios_ingreso.html?edit=${e.id_transaccion}'">
+                    <td>${e.categoria}</td>
+                    <td class="${e.tipo!='ingreso'?'text-danger':'text-success'}">${e.tipo!='ingreso'?'-':''}${e.monto.toLocaleString()}</td>
+                    <td>${e.id_cuenta}</td>
+                    <td>${convertirFechaISOaA(e.fecha)}</td>
+                    <td>${e.id_transaccion}</td>
+                </tr>
+                `
             })
         })
     </script>

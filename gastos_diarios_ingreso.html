@@ -1,166 +1,504 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <title>Title</title>
-        <!-- Required meta tags -->
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
 
-        <!-- Bootstrap CSS v5.2.1 -->
-        <link rel="stylesheet" href="./style/bootstrap.min.css">
-        <link rel="stylesheet" href="./style/aside.css">
-    </head>
+<head>
+    <title>Nuevo Movimiento</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/bootstrap-icons.css">
+    <link rel="stylesheet" href="./styles/fontawesome.min.css">
+    <link rel="stylesheet" href="./styles/material-components-web.min.css">
+    <link rel="stylesheet" href="./styles/icon.css">
+    <link rel="stylesheet" href="./styles/pe7sicons.css">
+    <link rel="stylesheet" href="./styles/all.min.css">
+    <link rel="shortcut icon" href="./img/3Recurso 22.png" type="image/x-icon">
+    
+    <!-- Incluir Tempus Dominus CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.2.7/dist/css/tempus-dominus.min.css">
+
+   
+    
+    
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js"></script>
     <style>
-        *{
-            --sidebar-width: 250px;
+        /* Animación para deslizar desde la izquierda */
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Animación para deslizar hacia la izquierda */
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Clases para aplicar las animaciones */
+        .animate-slide-in {
+            animation: slideIn 0.5s forwards;
+        }
+
+        .animate-slide-out {
+            animation: slideOut 0.5s forwards;
+        }
+
+        @media (min-width:576px) {
+            .aside-class {
+                color: black;
+                background-color: var(--gb-light);
+                width: 235px;
+                position: static;
+                height: 91vh;
+                ;
+            }
+        }
+
+        .container_tab {
+            max-width: 1500px;
+            margin: 0px auto;
+        }
+
+        .table_gb {
+            margin-top: 1rem;
+            width: 100%;
+            /* Asegura que la tabla use todo el ancho disponible */
+            overflow-x: auto;
+            /* Permite el desplazamiento horizontal si es necesario */
 
         }
-        main{}
-        
-    </style>
-    <body>
-        <header>
-            
-            <nav
-                class="navbar navbar-expand-sm navbar-light bg-light"
-            >
-                <div class="container">
-                    <a class="navbar-brand" href="/">Finanzas personales</a>
-                    <button
-                        class="navbar-toggler "
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#sidebar"
-                        aria-controls="sidebar"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <!-- <span class="navbar-toggler-icon"></span> -->
-                    </button>
-                    <!--<div class="collapse navbar-collapse" id="sidebar">
-                        <ul class=" navbar-nav me-auto mt-2 mt-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="#" aria-current="page"
-                                    >Home
-                                    <span class="visually-hidden">(current)</span></a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a
-                                    class="nav-link dropdown-toggle"
-                                    href="#"
-                                    id="dropdownId"
-                                    data-bs-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                    >Dropdown</a
-                                >
-                                <div
-                                    class="dropdown-menu"
-                                    aria-labelledby="dropdownId"
-                                >
-                                    <a class="dropdown-item" href="#"
-                                        >Action 1</a
-                                    >
-                                    <a class="dropdown-item" href="#"
-                                        >Action 2</a
-                                    >
-                                </div>
-                            </li>
-                        </ul>
-                        <form class="  d-flex my-2 my-lg-0">
-                            <input
-                                class="form-control me-sm-2"
-                                type="text"
-                                placeholder="Search"
-                            />
-                            <button
-                                class="btn btn-outline-success my-2 my-sm-0"
-                                type="submit"
-                            >
-                                Search
-                            </button>
-                        </form>
-                    </div> -->
-                </div>
-            </nav>
-            
-        </header>
-        <main>
-            <aside id="sidebar" class="p-3">
-                <div>
-                    <h4>Menu principal</h4>
-                    <ul class="nav d-flex flex-column" style="flex-direction: column;">
-                        <li class="nav-item mt-3">
-                            <a href="./index.html" class="nav-link">
-                                <span data-feather="home"></span>
-                                Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item mt-3">
-                            <a href="./gastos_diarios.html" class="nav-link active">
-                                <span data-feather="dollar-sign"></span>
-                                Gastos Diarios
-                            </a>
-                        </li>
-                        <li class="nav-item mt-3">
-                            <a href="./presupuesto.html" class="nav-link">
-                                <span data-feather="file"></span>
-                                Gastos Programados
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
-            </aside>
-            <div id="button_aside" class="mx-3" role="tablist">
-                <label class="container2">
-                    <input checked="checked" type="checkbox" onclick="showaside()">
-                    <svg viewBox="0 0 320 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="chevron-right"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg>
-                  </label>
-            </div>
-            <div class="container ">
-                <h2 class="pt-5">Hub</h2>
-                <div class="mt-3">
-
-                </div>
-            </div>
-        </main>
-        <footer>
-            <!-- place footer here -->
-        </footer>
-        <!-- Bootstrap JavaScript Libraries -->
-        <script src="./scripts/popper.min.js"></script>
-        <script src="./scripts/bootstrap.min.js"></script>
-        <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-        <script src="./scripts/script.js"></script>
-
-        <script>
-          feather.replace()
-        </script>
-        <script>
-            showed = false
-            function showaside(){
-                if(showed){
-                    sidebar.style.left = "-250px"
-                    button_aside.style.left = '0'
-
-                    showed = false
-                }else{
-                    sidebar.style.left = "0"
-                    showed = true
-                    button_aside.style.left = 'var(--sidebar-width)'
-                }
 
 
+        /* Ajustes para pantallas más pequeñas */
+        @media (max-width: 768px) {
+            .table_row {
+                flex-direction: column;
+                /* Cambia las filas a columnas en pantallas pequeñas */
             }
-            showaside()
-        </script>
-    </body> 
+
+            .table_col {
+                width: 100%;
+                /* Hace que cada columna use todo el ancho disponible */
+                min-width: auto;
+                /* Elimina el ancho mínimo en pantallas pequeñas */
+                height: auto;
+                /* Ajusta la altura automáticamente */
+                padding: 0.5rem;
+                /* Reduce el relleno para pantallas más pequeñas */
+            }
+
+            .table_header .table_col {
+                font-weight: bold;
+                /* Hace que los encabezados sean más visibles */
+                text-align: left;
+                /* Alinea el texto a la izquierda */
+            }
+        }
+
+        .table_row {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .table_col {
+
+            flex: 1;
+            /* Hace que cada columna use una fracción igual del ancho disponible */
+            min-width: 200px;
+            /* Define un ancho mínimo para cada columna */
+            height: 72px;
+            padding-left: 1rem;
+            align-content: center;
+            display: flex;
+            align-items: center;
+            /* Centra verticalmente el contenido */
+
+        }
+
+        .table_header {
+            background-color: var(--gb-gray-400);
+            border-radius: 8px 8px 0px 0px;
+
+
+        }
+
+        .table_header .table_col {
+            padding-left: 1rem;
+            align-content: center;
+            height: 2rem;
+        }
+
+        .table_body .table_row {
+            border-width: 2px;
+            border-style: solid;
+            border-color: transparent rgb(229, 232, 237) rgb(229, 232, 237);
+            background-color: var(--gb-white);
+        }
+        .table_icon  {
+            font-size: 40px !important;
+            border-radius: 30px;
+            /* background: #ededed; */
+            border: 1px solid var(--pyro-main-color);
+            color: var(--pyro-main-color);
+            right: .75rem;
+            top: .75rem;
+            padding: .5rem;
+            box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+            /* z-index: 20; */
+        }
+        .title_table_row{
+            font-size: large;
+            font-weight: bold;
+        }
+        .sub_text_table_row{
+            font-size: small;
+            color: #adadad;
+        }
+        /* Ajustes para pantallas pequeñas */
+        @media (max-width: 768px) {
+        .table-responsive table {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        th, td {
+            white-space: nowrap; /* Evitar que el contenido se salga de las celdas */
+        }
+        }
+
+        /* Ajustes generales */
+        .table-responsive {
+        overflow-x: auto;
+        }
+
+        table {
+        width: 100%; /* Deja que Bootstrap maneje el ancho de la tabla */
+        table-layout: auto; /* Dejar que las columnas ajusten su tamaño automáticamente */
+        }
+
+        /* bg-light text-black w-64 space-y-6 absolute inset-y-0  */
+    </style>
+</head>
+
+
+
+<body>
+    <div class="app-container app-theme-white">
+        <header>
+            <navbarGB></navbarGB>
+        </header>
+        <div class="app-main">
+            <sidebarGB></sidebarGB>
+            <div class="app-main__outer">
+                <div class="container mt-3">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <div class="card-header-title font-size-lg text-capitalize align-self-center">
+                                <i class="header-icon pe-7s-note2 opacity-6"></i>
+                                Formulario de movimiento
+                            </div>
+                            <div class="btn-actions-pane-right actions-icon-btn">
+                                <button class="btn btn-sm btn-outline-success align-items-center" onclick="save_reg()">
+                                    <i class="pe-7s-plus btn-icon-wrapper"></i> Guardar movimiento
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                            <label for="cuenta" class="form-label">Cuenta</label>
+                                            <select
+                                                class="form-select"
+                                                name="cuenta"
+                                                id="cuenta"
+                                            >
+                                                <option selected></option>
+                                                <option value="">New Delhi</option>
+                                                <option value="">Istanbul</option>
+                                                <option value="">Jakarta</option>
+                                            </select>
+                                            <small id="helpId" class="form-text text-muted">seleccione la cuenta de la transacción</small>
+                                        
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="datetimepicker">Seleccionar Fecha y Hora:</label>
+                                            <div class="input-group date" id="datetimepicker" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                                              <input type="text" id="fecha" class="form-control" data-td-target="#datetimepicker"/>
+                                              <span class="input-group-text" data-td-target="#datetimepicker" data-td-toggle="datetimepicker">
+                                                <i class="fas fa-calendar-alt"></i>
+                                              </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="monto" class="form-label">Monto</label>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+                                            </div>
+                                            <input type="text" class="form-control" id="monto" placeholder="Ingrese el monto" aria-label="Monto">
+                                          </div>
+                                        <small id="helpId" class="form-text text-muted">ingrese el monto de la transacción</small>
+                                    
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="tipo" class="form-label">Tipo</label>
+                                            <select
+                                                class="form-select"
+                                                name="tipo"
+                                                id="tipo"
+                                            >
+                                                <option value="ingreso">Ingreso</option>
+                                                <option value="gasto" selected>Gasto</option>
+                                            </select>
+                                            <small id="helpId" class="form-text text-muted">seleccione el tipo de la transacción</small>
+
+                                    
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="categoria" class="form-label">Categoría</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            name="categoria"
+                                            id="categoria"
+                                            aria-describedby="helpId"
+                                            placeholder=""
+                                            list="sugerencias"
+                                        />
+                                        <small id="helpId" class="form-text text-muted">Ingrese la categoría</small>
+                                        <datalist id="sugerencias">
+                                            <!-- Aquí se cargarán dinámicamente las sugerencias -->
+                                        </datalist>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-actions-pane-right actions-icon-btn"></div>
+                                <button class="btn btn-sm btn-outline-success align-items-center" id="btn_save" onclick="save_reg()">
+                                    <i class="pe-7s-plus btn-icon-wrapper"></i> Guardar movimiento
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                
+
+
+
+            </div>
+        </div>
+
+        <button type="button" data-type="success" class="btn btn-success btn-show-swal">Show
+            Alert</button>
+        <drawerGB></drawerGB>
+    </div>
+    <script src="./scripts/components.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/jquery.min.js"></script>
+    <script src="./scripts/popper.min.js"></script>
+    <script src="./scripts/bootstrap.min.js"></script>
+    <!-- Incluir Tempus Dominus JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.2.7/dist/js/tempus-dominus.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
+    
+    <script>
+        // Función para formatear el número con separadores de miles y decimales
+        function formatearNumero(valor) {
+            // Eliminar cualquier carácter que no sea dígito o coma
+            valor = valor.replace(/[^\d,]/g, '');
+
+            // Si el valor incluye una coma, dividirlo en parte entera y parte decimal
+            let partes = valor.split(',');
+            let parteEntera = partes[0];
+            let parteDecimal = partes[1] || ''; // Si no hay decimales, lo dejamos vacío
+
+            // Formatear la parte entera con puntos (separadores de miles)
+            parteEntera = parteEntera.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+            // Si hay decimales, limitar a 2 dígitos y unir la parte entera con la decimal
+            if (parteDecimal.length > 0) {
+            return parteEntera + ',' + parteDecimal.substring(0, 2);
+            } else {
+            return parteEntera + (valor.includes(',') ? ',' : ''); // Mantener la coma si fue escrita
+            }
+        }
+
+        // Obtener el input de monto
+        const inputMonto = document.getElementById('monto');
+
+        // Añadir evento input para formatear en tiempo real
+        inputMonto.addEventListener('input', function (e) {
+            let valor = e.target.value;
+            e.target.value = formatearNumero(valor); // Aplicar el formato al valor del input
+        });
+// Inicializar el datetime picker
+const picker = new tempusDominus.TempusDominus(document.getElementById('datetimepicker'), {
+    defaultDate: new Date(),
+    display: {
+      components: {
+        calendar: true,  // Mostrar calendario
+        date: true,      // Mostrar selección de fecha
+        month: true,     // Mostrar selección de mes
+        year: true,      // Mostrar selección de año
+        decades: true,   // Mostrar selección por décadas
+        clock: true,     // Mostrar selección de hora
+        hours: true,     // Mostrar campo de horas
+        minutes: true,   // Mostrar campo de minutos
+        seconds: false   // Puedes habilitar o deshabilitar los segundos
+      }
+    }
+  });
+    </script>
+    
+
+    <script>
+        function toggleMenu() {
+            if ($('#aside_menu').hasClass('d-none')) {
+                // Si el menú está oculto, mostrar con animación
+                $('#aside_menu').removeClass('d-none animate-slide-out').addClass('animate-slide-in');
+            } else {
+                // Si el menú está visible, ocultar con animación
+                $('#aside_menu').removeClass('animate-slide-in').addClass('animate-slide-out');
+
+                // Después de que la animación termine, añadir d-none
+                setTimeout(function () {
+                    $('#aside_menu').addClass('d-none');
+                }, 500); // El tiempo aquí debe coincidir con la duración de la animación
+            }
+        }
+        movimientos_btn.classList.add('mm-active')
+        fetch('https://app.ejecomercial.co:1880/get_cuentas/1088344174')
+        .then(response=> response.json())
+        .then(response=> {
+            cuenta.innerHTML = ''
+            response.forEach(e=>{
+                cuenta.innerHTML += `<option value="${e.id_cuenta}">${e.entidad}</option>`
+
+            })
+        })
+        // Crear una función para convertir la fecha
+        function convertirFechaHora(fechaHora) {
+            // Dividir la fecha y la hora
+            let partes = fechaHora.split(', ');
+
+            // Convertir la parte de la fecha (DD/MM/YYYY)
+            let fecha = partes[0].split('/');
+            let dia = fecha[0];
+            let mes = fecha[1];
+            let anio = fecha[2];
+
+            // Convertir la parte de la hora (HH:mm a. m.)
+            let horaPartes = partes[1].split(' ');
+            let horaMinuto = horaPartes[0].split(':');
+            let amPm = horaPartes[1];
+            let horas = parseInt(horaMinuto[0]);
+            let minutos = horaMinuto[1];
+
+            // Convertir a formato 24 horas si es necesario
+            if (amPm === 'p. m.' && horas < 12) {
+                horas += 12;
+            } else if (amPm === 'a. m.' && horas === 12) {
+                horas = 0;
+            }
+
+            // Formatear la fecha y hora a formato YYYY-MM-DD HH:MM:SS
+            let fechaFormateada = `${anio}-${mes}-${dia} ${horas.toString().padStart(2, '0')}:${minutos}:00`;
+            return fechaFormateada;
+        }
+        function convertirFechaHoraOpuesta(fechaHora) {
+            // Dividir la fecha y la hora
+            let partes = fechaHora.split(' ');
+
+            // Convertir la parte de la fecha (YYYY-MM-DD)
+            let fecha = partes[0].split('-');
+            let anio = fecha[0];
+            let mes = fecha[1];
+            let dia = fecha[2];
+
+            // Convertir la parte de la hora (HH:MM:SS)
+            let horaMinuto = partes[1].split(':');
+            let horas = parseInt(horaMinuto[0]);
+            let minutos = horaMinuto[1];
+            let amPm = 'a. m.';
+
+            // Convertir a formato 12 horas
+            if (horas >= 12) {
+                amPm = 'p. m.';
+                if (horas > 12) {
+                    horas -= 12;
+                }
+            } else if (horas === 0) {
+                horas = 12; // Para que 00:00 sea 12:00 a. m.
+            }
+
+            // Formatear la fecha a formato DD/MM/YYYY y la hora a HH:mm a. m./p. m.
+            let fechaFormateada = `${dia}/${mes}/${anio}, ${horas.toString().padStart(2, '0')}:${minutos} ${amPm}`;
+            return fechaFormateada;
+        }
+
+        function save_reg(){
+            data_send={
+                "id_transaccion":create_id2(),
+                "id_cuenta":cuenta.value,
+                "fecha":convertirFechaHora(fecha.value),
+                "monto":parseFloat(monto.value.replaceAll('.','').replace(',','.')),
+                "tipo":tipo.value,
+                "categoria":categoria.value,
+                "id_usuario":1088344174
+            }
+            console.log(data_send)
+            fetch('https://app.ejecomercial.co:1880/add_movimiento',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(data_send)
+            })
+            .then(response=>{
+                if(!response.ok){
+                    throw new Error(response)
+                }
+                return response.json()
+            }).then(response=>{
+                Swal.fire({
+                    icon: 'success', // Puedes cambiar a 'info', 'warning', 'error', 'question'
+                    title: 'Envío exitoso',
+                    text: '¿Deseas continuar?',
+                    confirmButtonText: 'Ok',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Aquí va tu función personalizada cuando se presiona el botón de confirmación
+                        window.location.href = './gastos_diarios.html'
+                    } 
+                });
+            })
+        }
+        if(window.location.href.includes('edit')){
+            id_mov = window.location.href.split('edit=')[1]
+            fetch('https://app.ejecomercial.co:1880/get_data_movimiento/'+id_mov)
+            .then(response=> response.json())
+            .then(response=> console.log(response))
+        }
+
+    </script>
+</body>
+
 </html>
