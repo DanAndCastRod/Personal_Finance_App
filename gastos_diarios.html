@@ -349,6 +349,7 @@
         })
         .then(data=>{
             body_movimientos.innerHTML=''
+            allmovs = data
             data.forEach(e=>{
                 body_movimientos.innerHTML+=`
                 <tr role="row" onclick="window.location.href='./gastos_diarios_ingreso.html?edit=${e.id_transaccion}'">

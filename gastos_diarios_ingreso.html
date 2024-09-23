@@ -444,9 +444,13 @@
         
 
         
-        function actualizar_saldo(numero_cuenta){
+        function actualizar_saldo(numero_cuenta,eliminar=false){
             vmonto = parseFloat(monto.value.replaceAll('.','').replace(',','.'))
-            nuevo_saldo = saldo+(tipo.value=="ingreso"?vmonto-data_edit.monto:data_edit.monto-vmonto)
+            if(eliminar){
+                nuevo_saldo = saldo+(tipo.value=='ingreso'?data_edit.monto-vmonto:data_edit.monto-vmonto)
+            }else{
+                nuevo_saldo = saldo+(tipo.value=="ingreso"?vmonto-data_edit.monto:data_edit.monto-vmonto)
+            }
             fetch('https://app.ejecomercial.co:1880/actualizar_saldo/',{
                 method:'PUT',
                 headers:{
@@ -545,12 +549,14 @@
                 btn_delete = document.createElement('button')
                 btn_delete.className = 'btn btn-outline-danger btn-sm ml-2'
                 btn_delete.innerText = 'Eliminar'
+                btn_delete.setAttribute('onclick','eliminar_registro()')
                 btn_save.parentElement.appendChild(btn_delete)
                 btn_save2.setAttribute('onclick','actualizar_reg()')
                 btn_save2.innerText = 'Actualizar'
                 btn_delete2 = document.createElement('button')
                 btn_delete2.className = 'btn btn-outline-danger btn-sm ml-2'
                 btn_delete2.innerText = 'Eliminar'
+                btn_delete2.setAttribute('onclick','eliminar_registro()')
                 btn_save2.parentElement.appendChild(btn_delete2)
 
             })
@@ -596,6 +602,36 @@
                             actualizar_saldo(cuenta.value)
                         } 
                     });
+                })
+            }
+            function eliminar_registro(){
+                fetch('https://app.ejecomercial.co:1880/eliminar_mov/'+id_mov)
+                .then(response=>{
+                    if(!response.ok){
+                        throw new Error('No se pudo eliminar el registro');
+                        Swal.fire({
+                            icon:'error',
+                            title:'Error',
+                            text:'No se pudo eliminar el registro',
+                            confirmButtonText:'Ok',
+                        })                        
+                    }
+                    return response.json()
+                }).then(response=>{
+                    Swal.fire({
+                        icon:'success',
+                        title:'Eliminación Exitosa',
+                        text:'¿Deseas Actualizar el saldo?',
+                        showDenyButton:true,
+                        confirmButtonText:'Actulizar',
+                        denyButtonText:'No Actualizar'
+                    }).then((result)=>{
+                        if(result.isConfirmed){
+                            actualizar_saldo(cuenta.value, true)
+                        }else if (result.isDenied){
+                            window.location.href = './gastos_diarios.html'
+                        }
+                    })
                 })
             }
         }
