@@ -256,7 +256,8 @@
                               <table id="example" class="table table-hover table-striped table-bordered dataTable dtr-inline" role="grid" aria-describedby="example_info">
                                 <thead>
                                   <tr role="row">
-                                    <th>Categoría</th>
+                                    <th>Categoría</th>                                    
+                                    <th>Sub Categoría</th>
                                     <th>Monto</th>
                                     <th>Cuenta</th>
                                     <th>Fecha</th>
@@ -269,7 +270,8 @@
                                 </tbody>
                                 <tfoot>
                                   <tr>
-                                    <th>Categoría</th>
+                                    <th>Categoría</th>                                    
+                                    <th>Sub Categoría</th>
                                     <th>Monto</th>
                                     <th>Cuenta</th>
                                     <th>Fecha</th>
@@ -351,6 +353,7 @@
                 body_movimientos.innerHTML+=`
                 <tr role="row" onclick="window.location.href='./gastos_diarios_ingreso.html?edit=${e.id_transaccion}'">
                     <td>${e.categoria}</td>
+                    <td>${e.subcategoria}</td>
                     <td class="${e.tipo!='ingreso'?'text-danger':'text-success'}">${e.tipo!='ingreso'?'-':''}${e.monto.toLocaleString('es-CO')}</td>
                     <td>${e.id_cuenta}</td>
                     <td class="sorting_1 dtr-control">${new Date(e.fecha).toLocaleString('es-CO')}</td>
