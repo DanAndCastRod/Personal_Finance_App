@@ -212,7 +212,7 @@
             if (edit){
                 id = window.location.href.split('id=')[1]
                 bnt_envio.innerText = 'Actualizar'
-                fetch('https://144.126.218.214:1880/get_edit_data/'+id)
+                fetch('https://apis.pyro.services/get_edit_data/'+id)
                 .then(response => response.json())
                 .then(data_edit => {
                     registro = data_edit
@@ -371,7 +371,7 @@
                             Data_send.nvos_Registros.push({nombre:e.querySelector('.name').value,monto:e.querySelector('.value').value,categoria:e.querySelector('.cat').value})   
                         })
                         Data_send.deletes = deletes
-                        fetch('https://144.126.218.214:1880/update_presupuesto/',{
+                        fetch('https://apis.pyro.services/update_presupuesto/',{
                             method:'POST',
                             headers: {'Content-Type':'application/json'},
                             body: JSON.stringify(Data_send)
@@ -386,7 +386,7 @@
                         document.querySelectorAll('#fila').forEach(e=>{
                             Data_send.Registros.push({nombre:e.querySelector('.name').value,monto:e.querySelector('.value').value,categoria:e.querySelector('.cat').value})   
                         })
-                        fetch('https://144.126.218.214:1880/post_presupuesto/',{
+                        fetch('https://apis.pyro.services/post_presupuesto/',{
                             method:"POST",
                             headers: {'Content-Type':'application/json'},
                             body:JSON.stringify(Data_send)

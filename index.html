@@ -223,7 +223,7 @@
 
             }
         userdata = JSON.parse(localStorage.data)
-        fetch(`https://144.126.218.214:1880/get_cuentas/${userdata.id_usuario}`)
+        fetch(`https://apis.pyro.services/get_cuentas/${userdata.id_usuario}`)
         .then(response=>response.json())
         .then(response=>{
             cuentas_data = response
@@ -233,11 +233,11 @@
                 saldo+=(acu.saldo)
             })
             total_disponible.innerText = '$'+saldo.toLocaleString()
-            fetch(`https://144.126.218.214:1880/get_presupuestos/${userdata.id_usuario}`)
+            fetch(`https://apis.pyro.services/get_presupuestos/${userdata.id_usuario}`)
             .then(response=> response.json())
             .then(response=>{
                 presupuesto_data = response
-                fetch('https://144.126.218.214:1880/get_presupuestos_detalles/')
+                fetch('https://apis.pyro.services/get_presupuestos_detalles/')
                 .then(response2=> response2.json())
                 .then(reg=> {
                     Reg = reg

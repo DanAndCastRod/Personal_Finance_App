@@ -308,7 +308,7 @@
     <script>
         
         id_usuario = 1088344174
-        fetch('https://144.126.218.214:1880/get_cuentas/'+id_usuario).then(response=>response.json())
+        fetch('https://apis.pyro.services/get_cuentas/'+id_usuario).then(response=>response.json())
         .then(response=>{
             table_body_cuentas.innerHTML=''
             response.forEach(e=>{
@@ -334,7 +334,7 @@
 
         })
 
-        fetch('https://144.126.218.214:1880/get_all_movs/'+id_usuario)
+        fetch('https://apis.pyro.services/get_all_movs/'+id_usuario)
         .then(response=>{
             if(!response.ok){
                 throw new Error('Error en la solicitud')

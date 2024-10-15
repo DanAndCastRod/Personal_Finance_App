@@ -262,7 +262,7 @@
             function eliminar(element){
                 id_registro = element.getAttribute('id_aux').split('_')[1]
 
-                fetch('https://144.126.218.214:1880/delete_presupuesto/'+id_registro,{
+                fetch('https://apis.pyro.services/delete_presupuesto/'+id_registro,{
                     method:'DELETE'
                 })
                 .then(response=>response.text())
@@ -279,7 +279,7 @@
                 ejecutado_prep = format_to_int(element2.innerText)
                 element2.innerText = format_to_val(ejecutado_prep+value)
                 actualizar_subtotal(id_prep,value)
-                fetch('https://144.126.218.214:1880/change_state',{
+                fetch('https://apis.pyro.services/change_state',{
                     method:'PUT',
                     headers: {'Content-Type':'application/json'},
                     body:JSON.stringify(data_element)
@@ -299,10 +299,10 @@
             function send_to_edit(element){
                 window.location.href = `./presupuesto_ingreso.html?id=${element.id.split('_')[1]}`
             }
-            fetch('https://144.126.218.214:1880/get_presupuestos/1088344174')
+            fetch('https://apis.pyro.services/get_presupuestos/1088344174')
             .then(response=> response.json())
             .then(response=> {
-                fetch('https://144.126.218.214:1880/get_presupuestos_detalles/')
+                fetch('https://apis.pyro.services/get_presupuestos_detalles/')
                 .then(response2=> response2.json())
                 .then(reg=> {
                     Reg = reg

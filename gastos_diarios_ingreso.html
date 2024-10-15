@@ -339,7 +339,7 @@
         var id_usuario = 1088344174
 
         movimientos_btn.classList.add('mm-active')
-        fetch('https://144.126.218.214:1880/get_cuentas/'+id_usuario)
+        fetch('https://apis.pyro.services/get_cuentas/'+id_usuario)
         .then(response=> response.json())
         .then(response=> {
             cuenta.innerHTML = ''
@@ -348,7 +348,7 @@
 
             })
             getsaldo(cuenta)
-            fetch('https://144.126.218.214:1880/get_categorias/'+id_usuario)
+            fetch('https://apis.pyro.services/get_categorias/'+id_usuario)
             .then(response=> response.json())
             .then(response=> {
                 lista_categorias.innerHTML = ''
@@ -366,7 +366,7 @@
         var nuevo_saldo;
         var data_edit = {"monto":0};
         function getsaldo(element){
-            fetch('https://144.126.218.214:1880/get_saldo/'+element.value)
+            fetch('https://apis.pyro.services/get_saldo/'+element.value)
             .then(response=>response.json())
             .then(data=>{
                 cuenta.nextElementSibling.innerHTML = `actualmente tienes <b>$${data[0].saldo.toLocaleString('es-CO')}</b>`
@@ -451,7 +451,7 @@
             }else{
                 nuevo_saldo = saldo+(tipo.value=="ingreso"?vmonto-data_edit.monto:data_edit.monto-vmonto)
             }
-            fetch('https://144.126.218.214:1880/actualizar_saldo/',{
+            fetch('https://apis.pyro.services/actualizar_saldo/',{
                 method:'PUT',
                 headers:{
                     'Content-Type':'application/json'
@@ -494,7 +494,7 @@
                 "subcategoria":subcategoria.value
             }
             console.log(data_send)
-            fetch('https://144.126.218.214:1880/add_movimiento',{
+            fetch('https://apis.pyro.services/add_movimiento',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -533,7 +533,7 @@
         
         if(window.location.href.includes('edit')){
             id_mov = window.location.href.split('edit=')[1]
-            fetch('https://144.126.218.214:1880/get_dt_mov/'+id_mov)
+            fetch('https://apis.pyro.services/get_dt_mov/'+id_mov)
             .then(response=> response.json())
             .then(response=> {
                 data_edit = response[0]
@@ -571,7 +571,7 @@
                     "id_usuario":id_usuario,
                     "subcategoria":subcategoria.value
                 }
-                fetch('https://144.126.218.214:1880/actualizar_mov',{
+                fetch('https://apis.pyro.services/actualizar_mov',{
                     method:'PUT',
                     headers:{
                         'Content-Type':'application/json'
@@ -605,7 +605,7 @@
                 })
             }
             function eliminar_registro(){
-                fetch('https://144.126.218.214:1880/eliminar_mov/'+id_mov)
+                fetch('https://apis.pyro.services/eliminar_mov/'+id_mov)
                 .then(response=>{
                     if(!response.ok){
                         throw new Error('No se pudo eliminar el registro');

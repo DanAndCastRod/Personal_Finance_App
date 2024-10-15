@@ -184,6 +184,7 @@
     const inputElement = document.getElementById("PasswordX");
     undefined;
     IP = '144.126.218.214'
+    IP = 'apis.pyro.services'
     inputElement.addEventListener("keydown", function (event) {
       if (event.key == "Enter") {
         send_user2();
@@ -224,7 +225,7 @@
         Password: passwordField.value,
       };
 
-      fetch("https://" + IP + ":1880/auth/" + data.User + "&" + data.Password)
+      fetch("https://apis.pyro.services/auth/" + data.User + "&" + data.Password)
         .then((response) => response.json())
         .then((data) => {
           const DataJson = JSON.stringify(data);
