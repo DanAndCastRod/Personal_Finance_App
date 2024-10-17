@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="./styles/pe7sicons.css">
     <link rel="stylesheet" href="./styles/all.min.css">
     <link rel="shortcut icon" href="./img/1Recurso 1.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js"></script>
     <style>
@@ -142,6 +144,12 @@
         }
 
         /* bg-light text-black w-64 space-y-6 absolute inset-y-0  */
+        #example td {
+            max-width: 150px; /* Ajusta este valor según sea necesario */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     </style>
 </head>
 
@@ -166,7 +174,7 @@
                     </app-search-box>
                 </div>
                 <div class="container align-self-center row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card mb-3 widget-chart">
                             <div class="icon-wrapper rounded-circle">
                                 <div class="icon-wrapper-bg bg-primary"></div>
@@ -177,14 +185,13 @@
                             <div class="widget-description text-success">
                                 <span class="pl-1">
                                     <span>
-                                        <a href="./gastos_diarios.html" class="btn btn-sm btn-outline-secondary">Ver
-                                            Cuentas</a>
+                                        <a href="./gastos_diarios.html" class="btn btn-sm btn-outline-secondary">Ver Cuentas</a>
                                     </span>
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="card mb-3 widget-chart">
                             <div class="icon-wrapper rounded-circle">
                                 <div class="icon-wrapper-bg bg-primary"></div>
@@ -195,8 +202,24 @@
                             <div class="widget-description text-success">
                                 <span class="pl-1">
                                     <span>
-                                        <a href="./presupuesto.html" class="btn btn-sm btn-outline-secondary">Ver
-                                            Presupuesto</a>
+                                        <a href="./presupuesto.html" class="btn btn-sm btn-outline-secondary">Ver Presupuesto</a>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-3 widget-chart">
+                            <div class="icon-wrapper rounded-circle">
+                                <div class="icon-wrapper-bg bg-success"></div>
+                                <i class="pe-7s-note2 text-success"></i>
+                            </div>
+                            <div class="widget-numbers" id="total_balance">10</div>
+                            <div class="widget-subheading">Balance del día</div>
+                            <div class="widget-description text-success">
+                                <span class="pl-1">
+                                    <span>
+                                        <a href="./gastos_diarios.html#movimientos" class="btn btn-sm btn-outline-secondary">Ver Transacciones</a>
                                     </span>
                                 </span>
                             </div>
@@ -204,7 +227,7 @@
                     </div>
                 </div>
                 <div class="container align-self-center row">
-                    <div class="col-md-12">
+                    <div class="col-md-5">
                         <div class="main-card mb-3 card">
                             <div class="card-body" style="position: relative;">
                                 <h5 class="card-title">Area Chart</h5>
@@ -221,6 +244,45 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-7">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body" style="position: relative;">
+                                <h5 class="card-title">Ultimas transacciones</h5>
+                                <div id="example_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="table-responsive">
+                                      <table id="example" class="table table-hover table-striped table-bordered dataTable compact dtr-inline" role="grid" aria-describedby="example_info">
+                                        <thead>
+                                          <tr role="row">
+                                            <th>Categoría</th>                                    
+                                            <th>Sub Categoría</th>
+                                            <th>Monto</th>
+                                            <th>Cuenta</th>
+                                            <th>Fecha</th>
+                                            <th>ID</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody id="body_movimientos">
+                                          <!-- Aquí puedes añadir dinámicamente las filas -->
+                                          
+                                        </tbody>
+                                        <tfoot>
+                                          <tr>
+                                            <th>Categoría</th>                                    
+                                            <th>Sub Categoría</th>
+                                            <th>Monto</th>
+                                            <th>Cuenta</th>
+                                            <th>Fecha</th>
+                                            <th>ID</th>
+                                          </tr>
+                                        </tfoot>
+                                      </table>
+                                    </div>
+                                  </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -234,7 +296,7 @@
     <script src="./scripts/popper.min.js"></script>
     <script src="./scripts/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script>
     </script>
 
@@ -420,6 +482,45 @@
 
             var chart = new ApexCharts(document.querySelector('#chart'),options);
             chart.render()
+
+            const ultimasTransacciones = data
+                .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))  // Ordenar por fecha descendente
+                .slice(0, 10);  // Tomar las últimas 10 transacciones
+
+            data.forEach(e => {
+                body_movimientos.innerHTML += `
+                <tr role="row" onclick="window.location.href='./gastos_diarios_ingreso.html?edit=${e.id_transaccion}'">
+                    <td>${e.categoria}</td>
+                    <td>${e.subcategoria}</td>
+                    <td class="${e.tipo != 'ingreso' ? 'text-danger' : 'text-success'}">${e.tipo != 'ingreso' ? '-' : ''}${e.monto.toLocaleString('es-CO')}</td>
+                    <td>${e.id_cuenta}</td>
+                    <td>${new Date(e.fecha).toLocaleString('es-CO')}</td>
+                    <td>${e.id_transaccion}</td>
+                </tr>
+                `;
+            });
+            datafiltrada = data.filter(e=>{
+                fecha = new Date(e.fecha)
+                hoy = new Date()
+                return fecha.toLocaleDateString() == hoy.toLocaleDateString()
+            })
+            const calcularBalance = (data) => {
+            let balance = 0;
+
+            data.forEach(transaccion => {
+                if (transaccion.tipo === 'ingreso') {
+                balance += transaccion.monto;
+                } else if (transaccion.tipo === 'gasto') {
+                balance -= transaccion.monto;
+                }
+            });
+
+            return balance;
+            };
+
+            const balanceHoy = calcularBalance(datafiltrada);
+            
+            total_balance.innerHTML= '$'+balanceHoy.toLocaleString()
         });
 
         function toggleMenu() {
