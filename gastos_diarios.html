@@ -303,6 +303,11 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.9/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $.fn.dataTable.ext.type.order['date-custom-pre'] = function(d) {
+            return new Date(d).getTime();
+        };
+    </script>
 
 
     <script>
@@ -314,6 +319,8 @@
             response.forEach(e=>{
                 iconname = e.tipo == 'efectivo'?'cash':e.tipo=='debito'?'piggy':'credit'
                 table_body_cuentas.innerHTML+=`
+
+                
                 <div class="table_row">
                     <div class="table_col">
                         <div><i class="pe-7s-${iconname} mr-4 table_icon mark1"></i></div>
@@ -330,40 +337,46 @@
                     </div>
                 </div>`
             })
-            
+           
 
         })
 
         fetch('https://apis.pyro.services/get_all_movs/'+id_usuario)
-        .then(response=>{
-            if(!response.ok){
-                throw new Error('Error en la solicitud')
-                swal.fire({
-                    icon: 'error', // Puedes cambiar a 'info', 'warning', 'error', 'question'
-                    title: 'Error',
-                    text: 'No se ha podido cargar la solicitud de movimientos',
-                    confirmButtonText: 'Ok',
-                })
-            }
-            return response.json()
-        })
-        .then(data=>{
-            body_movimientos.innerHTML=''
-            allmovs = data
-            data.forEach(e=>{
-                body_movimientos.innerHTML+=`
-                <tr role="row" onclick="window.location.href='./gastos_diarios_ingreso.html?edit=${e.id_transaccion}'">
-                    <td>${e.categoria}</td>
-                    <td>${e.subcategoria}</td>
-                    <td class="${e.tipo!='ingreso'?'text-danger':'text-success'}">${e.tipo!='ingreso'?'-':''}${e.monto.toLocaleString('es-CO')}</td>
-                    <td>${e.id_cuenta}</td>
-                    <td class="sorting_1 dtr-control">${new Date(e.fecha).toLocaleString('es-CO')}</td>
-                    <td>${e.id_transaccion}</td>
-                </tr>
-                `
-            })
-            
-        })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la solicitud');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Ordenar los datos por fecha (de más reciente a más antigua)
+        data.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+        // Limpiar el contenido actual
+        body_movimientos.innerHTML = '';
+        
+        // Procesar y generar las filas de la tabla
+        data.forEach(e => {
+            body_movimientos.innerHTML += `
+            <tr role="row" onclick="window.location.href='./gastos_diarios_ingreso.html?edit=${e.id_transaccion}'">
+                <td>${e.categoria}</td>
+                <td>${e.subcategoria}</td>
+                <td class="${e.tipo != 'ingreso' ? 'text-danger' : 'text-success'}">${e.tipo != 'ingreso' ? '-' : ''}${e.monto.toLocaleString('es-CO')}</td>
+                <td>${e.id_cuenta}</td>
+                <td>${new Date(e.fecha).toLocaleString('es-CO')}</td>
+                <td>${e.id_transaccion}</td>
+            </tr>
+            `;
+        });
+    })
+    .catch(error => {
+        swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se ha podido cargar la solicitud de movimientos',
+            confirmButtonText: 'Ok',
+        });
+    });
     </script>
     
 

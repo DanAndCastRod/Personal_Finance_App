@@ -157,39 +157,71 @@
             <div class="app-main__outer">
 
                 <div class=" mt-3 col-2">
-                    <app-search-box><div class="search-wrapper"><div class="input-holder"><input type="text" placeholder="Type to search" class="search-input"><button class="search-icon"><span></span></button></div><button class="close"></button></div></app-search-box>
+                    <app-search-box>
+                        <div class="search-wrapper">
+                            <div class="input-holder"><input type="text" placeholder="Type to search"
+                                    class="search-input"><button class="search-icon"><span></span></button></div><button
+                                class="close"></button>
+                        </div>
+                    </app-search-box>
                 </div>
                 <div class="container align-self-center row">
-                    <div class="col-md-6 mt-3">
-                        <div class="card">
-                            <!-- <div class="card-header">Total Disponible</div> -->
-                            <div class="card-body">
-                                <h4 class="card-title h1 "id="total_disponible">$00.00</h4>
-                                <p class="card-text">Total Disponible</p>
+                    <div class="col-md-6">
+                        <div class="card mb-3 widget-chart">
+                            <div class="icon-wrapper rounded-circle">
+                                <div class="icon-wrapper-bg bg-primary"></div>
+                                <i class="pe-7s-cash text-primary"></i>
                             </div>
-                            <div class="card-footer text-muted">
-                                <a href="./gastos_diarios.html" class="btn btn-sm btn-outline-secondary">Ver Cuentas</a>
+                            <div class="widget-numbers" id="total_disponible">$00,00</div>
+                            <div class="widget-subheading">Total Disponible</div>
+                            <div class="widget-description text-success">
+                                <span class="pl-1">
+                                    <span>
+                                        <a href="./gastos_diarios.html" class="btn btn-sm btn-outline-secondary">Ver
+                                            Cuentas</a>
+                                    </span>
+                                </span>
                             </div>
                         </div>
-                            
                     </div>
-                    <div class="col-md-6 mt-3">
-                        <div class="card">
-                            <!-- <div class="card-header" >Total Presupuesto</div> -->
-                            <div class="card-body">
-                                <h4 class="card-title h1 " id = "total_presupuesto">$00.00</h4>
-                                <p class="card-text">Total Presupuestado</p>
+                    <div class="col-md-6">
+                        <div class="card mb-3 widget-chart">
+                            <div class="icon-wrapper rounded-circle">
+                                <div class="icon-wrapper-bg bg-primary"></div>
+                                <i class="pe-7s-news-paper text-primary"></i>
                             </div>
-                            <div class="card-footer text-muted">
-                                <a href="./presupuesto.html" class="btn btn-sm btn-outline-secondary">Ver Cuentas</a>
+                            <div class="widget-numbers" id="total_presupuesto">$00,00</div>
+                            <div class="widget-subheading">Total Presupuesto</div>
+                            <div class="widget-description text-success">
+                                <span class="pl-1">
+                                    <span>
+                                        <a href="./presupuesto.html" class="btn btn-sm btn-outline-secondary">Ver
+                                            Presupuesto</a>
+                                    </span>
+                                </span>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
-
-
-
+                <div class="container align-self-center row">
+                    <div class="col-md-12">
+                        <div class="main-card mb-3 card">
+                            <div class="card-body" style="position: relative;">
+                                <h5 class="card-title">Area Chart</h5>
+                                <div id="chart"></div>
+                                <!-- <div id="chart-apex-area" style="min-height: 364px;">
+                                   
+                                </div>
+                                <div class="resize-triggers">
+                                    <div class="expand-trigger">
+                                        <div style="width: 765px; height: 434px;"></div>
+                                    </div>
+                                    <div class="contract-trigger"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -201,69 +233,195 @@
     <script src="./scripts/jquery.min.js"></script>
     <script src="./scripts/popper.min.js"></script>
     <script src="./scripts/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <script>
     </script>
 
-    
+
 
     <script>
-        function get_frecuencia(elm){
-                var frecuencias;
-                switch(elm.periodo){
-                    case 'Semanal':
-                        frecuencias = ['L','M','X','J','V','S','D']
-                        break
-                    case 'Quincenal':
-                        frecuencias = ['Primera Quincena','Segunda Quincena']
-                        break
-                    default:
-                        frecuencias = []
-                }
-                return frecuencias
-
+        function get_frecuencia(elm) {
+            var frecuencias;
+            switch (elm.periodo) {
+                case 'Semanal':
+                    frecuencias = ['L', 'M', 'X', 'J', 'V', 'S', 'D']
+                    break
+                case 'Quincenal':
+                    frecuencias = ['Primera Quincena', 'Segunda Quincena']
+                    break
+                default:
+                    frecuencias = []
             }
+            return frecuencias
+
+        }
         userdata = JSON.parse(localStorage.data)
         fetch(`https://apis.pyro.services/get_cuentas/${userdata.id_usuario}`)
-        .then(response=>response.json())
-        .then(response=>{
+        .then(response => response.json())
+        .then(response => {
             cuentas_data = response
             console.log(response)
             var saldo = 0;
-            cuentas_data.forEach(acu=>{ 
-                saldo+=(acu.saldo)
+            cuentas_data.forEach(acu => {
+                saldo += (acu.saldo)
             })
-            total_disponible.innerText = '$'+saldo.toLocaleString()
+            total_disponible.innerText = '$' + saldo.toLocaleString()
             fetch(`https://apis.pyro.services/get_presupuestos/${userdata.id_usuario}`)
-            .then(response=> response.json())
-            .then(response=>{
-                presupuesto_data = response
-                fetch('https://apis.pyro.services/get_presupuestos_detalles/')
-                .then(response2=> response2.json())
-                .then(reg=> {
-                    Reg = reg
-                    
-                    
-                    response.forEach(e => {
-                        monto = 0
-                        ejecutado = 0
-                        Reg.filter(f=>f.id_presupuesto==e.id_presupuesto).forEach(k=>{
-                            monto+=k.monto
-                            ejecutado+= k.checked==1?k.monto:0
+                .then(response => response.json())
+                .then(response => {
+                    presupuesto_data = response
+                    fetch('https://apis.pyro.services/get_presupuestos_detalles/')
+                        .then(response2 => response2.json())
+                        .then(reg => {
+                            Reg = reg
+
+
+                            response.forEach(e => {
+                                monto = 0
+                                ejecutado = 0
+                                Reg.filter(f => f.id_presupuesto == e.id_presupuesto).forEach(k => {
+                                    monto += k.monto
+                                    ejecutado += k.checked == 1 ? k.monto : 0
+                                })
+                                e.total = monto
+                                e.ejecutado = ejecutado
+                                frecuencias = get_frecuencia(e)
+                                e.n_freq = e.periodo == 'Mensual' ? e.frecuencia : e.frecuencia == 'null' ? '' : frecuencias[e.frecuencia - 1]
+                            })
+
+
+                            preps = response
+                            var presupuesto = preps.reduce((acc, act) => acc.total + act.total)
+                            total_presupuesto.innerText = '$' + presupuesto.toLocaleString()
+                            
+                            
                         })
-                        e.total = monto
-                        e.ejecutado = ejecutado
-                        frecuencias = get_frecuencia(e)
-                        e.n_freq = e.periodo == 'Mensual' ? e.frecuencia: e.frecuencia == 'null'?'': frecuencias[e.frecuencia-1]
-                    })
-                        
-                    
-                    preps = response
-                    var presupuesto = preps.reduce((acc,act)=>acc.total+act.total)
-                    total_presupuesto.innerText = '$'+presupuesto.toLocaleString()
                 })
-            })
-            
+
         })
+
+        fetch('https://apis.pyro.services/get_all_movs/'+userdata.id_usuario)
+        .then(response=>response.json())
+        .then(response=>{
+            console.log(response)
+            data = response
+            
+                // Datos de ejemplo
+                // const data = [
+                // { tipo: 'ingreso', monto: 50812.91 },
+                // { tipo: 'gasto', monto: 73344 }
+                // ];
+
+            const today = new Date();
+            const last15Days = data.filter(item=>{
+                const fechaItem = new Date(item.fecha);
+                const diffDays = (today - fechaItem) / (1000*60*60*24*30)
+                return diffDays <= 6;
+            })
+
+            const groupedData = last15Days.reduce((acc,item)=>{
+                const fecha = new Date(item.fecha).toLocaleDateString('es-CO')
+                if(!acc[fecha]) acc[fecha] = {ingresos:0, gastos:0};
+                if(item.tipo == 'ingreso') acc[fecha].ingresos += item.monto;
+                if(item.tipo == 'gasto') acc[fecha].gastos += item.monto;
+                return acc;
+            },{})
+
+            const fechas = Object.keys(groupedData);
+            const ingresos = fechas.map(fecha => groupedData[fecha].ingresos);
+            const gastos = fechas.map(fecha => groupedData[fecha].gastos);
+
+            var options = {
+                chart:{
+                    type:'bar',
+                    height: '400', // Ajuste dinámico de altura
+                    // width: '100%',  // Ajuste dinámico de ancho
+                    events: {
+                        click: function(event, chartContext, opts) {
+                            // The last parameter opts contains additional information like `seriesIndex` and `dataPointIndex` for cartesian charts
+                            console.log(event, chartContext,opts)
+                        }
+                    }
+
+                },
+                series:[
+                    {
+                        name: 'Ingresos',
+                        data: ingresos,
+                        
+                    },
+                    {
+                        name: 'Gastos',
+                        data: gastos,
+                        
+                    }
+                    
+                ],
+                // yaxis: {
+                //     labels: {
+                //         formatter: function (value) {
+                //         return value.toLocaleString('es-CO',{style:'currency',currency:'COP'});
+                //         }
+                //     },
+                // },
+                yaxis: {
+                    labels: {
+                        formatter: function (value) {
+                            // Formato para miles y millones
+                            if (value >= 1000000) {
+                                return (value / 1000000).toFixed(2) + 'M'; // Para millones
+                            } else if (value >= 1000) {
+                                return (value / 1000).toFixed(2) + 'k'; // Para miles
+                            }
+                            return value; // Otros valores
+                        }
+                    }
+                },
+                xaxis:{
+                    categories: fechas
+                },
+                title:{
+                    text: 'Movimientos de los últimos 15 días'
+                },
+                responsive: [
+                    {
+                        breakpoint: 600, // Si el ancho de la pantalla es menor a 600px
+                        options: {
+                            chart: {
+                                height: 500 // Reducir la altura en móviles
+                            },
+                            plotOptions:{
+                                bar:{
+                                    horizontal:true
+                                }
+                            },
+                            legend: {
+                                position: 'bottom' // Colocar leyenda abajo en móviles
+                            },
+                            xaxis:{
+                                labels: {
+                                    formatter: function (value) {
+                                        // Formato para miles y millones
+                                        if (value >= 1000000) {
+                                            return (value / 1000000).toFixed(2) + 'M'; // Para millones
+                                        } else if (value >= 1000) {
+                                            return (value / 1000).toFixed(2) + 'k'; // Para miles
+                                        }
+                                        return value; // Otros valores
+                                    }
+                                }
+                            }
+                            
+                        }
+                    }
+                ]
+            };
+
+            var chart = new ApexCharts(document.querySelector('#chart'),options);
+            chart.render()
+        });
+
         function toggleMenu() {
             if ($('#aside_menu').hasClass('d-none')) {
                 // Si el menú está oculto, mostrar con animación
