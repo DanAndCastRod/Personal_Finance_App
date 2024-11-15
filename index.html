@@ -319,7 +319,7 @@
 
         }
         userdata = JSON.parse(localStorage.data)
-        fetch(`https://apis.pyro.services/get_cuentas/${userdata.id_usuario}`)
+        fetch(`https://apis.trip.rocks/get_cuentas/${userdata.id_usuario}`)
         .then(response => response.json())
         .then(response => {
             cuentas_data = response
@@ -329,11 +329,11 @@
                 saldo += (acu.saldo)
             })
             total_disponible.innerText = '$' + saldo.toLocaleString()
-            fetch(`https://apis.pyro.services/get_presupuestos/${userdata.id_usuario}`)
+            fetch(`https://apis.trip.rocks/get_presupuestos/${userdata.id_usuario}`)
                 .then(response => response.json())
                 .then(response => {
                     presupuesto_data = response
-                    fetch('https://apis.pyro.services/get_presupuestos_detalles/')
+                    fetch('https://apis.trip.rocks/get_presupuestos_detalles/')
                         .then(response2 => response2.json())
                         .then(reg => {
                             Reg = reg
@@ -363,7 +363,7 @@
 
         })
 
-        fetch('https://apis.pyro.services/get_all_movs/'+userdata.id_usuario)
+        fetch('https://apis.trip.rocks/get_all_movs/'+userdata.id_usuario)
         .then(response=>response.json())
         .then(response=>{
             console.log(response)
